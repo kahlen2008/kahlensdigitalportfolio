@@ -184,16 +184,21 @@ body {
     justify-content: center;
     align-items: center;
     gap: 12px;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
 }
 
 .btn-dark {
     background: var(--bg-dark);
     color: white;
+    border: none;
 }
 
 .btn-dark:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    color: white;
 }
 
 .btn-outline {
@@ -206,7 +211,7 @@ body {
 .btn-outline:hover {
     background: var(--bg-soft);
     border-color: var(--accent);
-    color: var(--accent);
+    color: var(--accent) !important;
     transform: translateY(-3px);
 }
 
@@ -288,6 +293,10 @@ body {
     font-weight: 600;
     transition: all 0.3s var(--ease);
     color: var(--text-main);
+    position: relative;
+    z-index: 1;
+    -webkit-appearance: none;
+    appearance: none;
 }
 
 #contactForm input:focus,
@@ -297,6 +306,7 @@ body {
     background: #fff;
     box-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
     transform: translateY(-2px);
+    z-index: 2;
 }
 
 #contactForm textarea {
@@ -352,11 +362,13 @@ footer {
     opacity: 0;
     pointer-events: none;
     transition: all 0.5s var(--ease);
+    visibility: hidden;
 }
 
 .modal-overlay.active {
     opacity: 1;
     pointer-events: all;
+    visibility: visible;
 }
 
 .modal-content {
@@ -485,7 +497,7 @@ body {
 .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 1s var(--ease);
+    transition: opacity 1s var(--ease), transform 1s var(--ease);
 }
 
 .reveal.active {
