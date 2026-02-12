@@ -39,64 +39,57 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8) !important;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    padding: 1.5rem 5%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    padding: 1.5rem 0;
     z-index: 1000;
     transition: all 0.4s var(--ease);
 }
 
 .nav-bar.scrolled {
-    padding: 1rem 5%;
-    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem 0;
+    background: rgba(255, 255, 255, 0.95) !important;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
 }
 
-.logo {
+.navbar-brand.logo {
     font-weight: 800;
     font-size: 1.5rem;
     letter-spacing: -1px;
     text-decoration: none;
     color: var(--text-main);
     text-transform: uppercase;
+    padding: 0;
 }
 
 .logo span {
     color: var(--accent);
 }
 
-.nav-links {
-    display: flex;
-    gap: 2.5rem;
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
+.navbar-nav .nav-link {
+    color: var(--text-muted) !important;
     font-size: 0.9rem;
     font-weight: 600;
     transition: color 0.3s ease;
+    padding: 0.5rem 0;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: var(--text-main) !important;
+}
+
+.navbar-toggler {
+    font-size: 1.25rem;
     color: var(--text-main);
 }
 
 /* Hero Section */
 .hero {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    align-items: center;
-    padding: 0 5% 0 10%;
+    min-height: 100vh;
+    padding: 120px 0;
     position: relative;
-    gap: 4rem;
 }
 
 .hero-content {
@@ -453,31 +446,34 @@ footer {
     transform: translateY(0);
 }
 
-@media (max-width: 968px) {
-    .hero {
-        grid-template-columns: 1fr;
-        padding-top: 100px;
-        height: auto;
-        gap: 2rem;
-    }
+/* Custom Footer Styling */
+footer a:hover {
+    color: var(--accent) !important;
+}
 
-    .hero-image {
-        height: 50vh;
-        order: -1;
+/* Mobile Adjustments */
+@media (max-width: 991px) {
+    .nav-bar {
+        padding: 1rem 0;
+    }
+    
+    .navbar-collapse {
+        background: white;
+        margin-top: 1rem;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
     .hero-name {
-        font-size: 3.5rem;
+        font-size: clamp(3rem, 10vw, 6rem);
         letter-spacing: -2px;
     }
-
-    .hero-image {
-        display: none;
+    
+    .hero-image-inner {
+        width: 300px;
+        height: 300px;
     }
 }
