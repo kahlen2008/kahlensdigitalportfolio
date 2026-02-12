@@ -42,8 +42,8 @@ body {
     background: rgba(255, 255, 255, 0.8) !important;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    padding: 1.5rem 0;
-    z-index: 1000;
+    padding: 1rem 0;
+    z-index: 9999;
     transition: all 0.4s var(--ease);
 }
 
@@ -55,7 +55,7 @@ body {
 
 .navbar-brand.logo {
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 2rem !important;
     letter-spacing: -1px;
     text-decoration: none;
     color: var(--text-main);
@@ -69,10 +69,10 @@ body {
 
 .navbar-nav .nav-link {
     color: var(--text-muted) !important;
-    font-size: 0.9rem;
+    font-size: 1.3rem !important;
     font-weight: 600;
     transition: color 0.3s ease;
-    padding: 0.5rem 0;
+    padding: 0.5rem 1rem !important;
 }
 
 .navbar-nav .nav-link:hover,
@@ -81,8 +81,20 @@ body {
 }
 
 .navbar-toggler {
-    font-size: 1.25rem;
-    color: var(--text-main);
+    font-size: 1.5rem;
+    color: var(--text-main) !important;
+    padding: 0.5rem;
+    border-radius: 12px;
+    background: var(--bg-soft);
+    transition: all 0.3s ease;
+}
+
+.navbar-toggler:hover {
+    background: var(--bg-main);
+}
+
+.navbar-toggler i {
+    display: block;
 }
 
 /* Hero Section */
@@ -456,7 +468,7 @@ footer a:hover {
     .nav-bar {
         padding: 1rem 0;
     }
-    
+
     .navbar-collapse {
         background: white;
         margin-top: 1rem;
@@ -471,7 +483,7 @@ footer a:hover {
         font-size: clamp(3rem, 10vw, 6rem);
         letter-spacing: -2px;
     }
-    
+
     .hero-image-inner {
         width: 300px;
         height: 300px;
