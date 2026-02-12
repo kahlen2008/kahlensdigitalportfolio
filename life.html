@@ -5,106 +5,97 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Life | Kahlen Ong</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Style -->
     <link rel="stylesheet" href="style.css">
-    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light nav-bar" id="nav">
-        <div class="container-fluid px-4 px-lg-5">
-            <a href="index.html" class="navbar-brand logo">Kahlen<span>.</span></a>
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navContent">
-                <ul class="navbar-nav nav-links align-items-center mt-3 mt-lg-0">
-                    <li class="nav-item mx-lg-3"><a href="index.html" class="nav-link">Home</a></li>
-                    <li class="nav-item mx-lg-3"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item mx-lg-3"><a href="projects.html" class="nav-link">Projects</a></li>
-                    <li class="nav-item mx-lg-3"><a href="life.html" class="nav-link active">Life</a></li>
-                    <li class="nav-item mx-lg-3"><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+    <nav class="nav-bar">
+        <a href="index.html" class="logo">Kahlen<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="life.html" class="active">Life</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <main class="container-fluid px-lg-5" style="padding-top: 120px;">
+    <main class="container" style="padding-top: 120px; max-width: 1400px; margin: 0 auto;">
         <!-- Hero Section -->
-        <section class="section reveal py-5">
-            <div class="text-center mb-5">
-                <span class="text-primary fw-bold text-uppercase small ls-lg mb-3 d-block"
-                    style="letter-spacing: 4px;">Beyond the Code</span>
-                <h1 class="display-1 fw-black text-uppercase mb-4">MASTERY & <br class="d-none d-md-block">HONOUR</h1>
-                <div class="bg-primary mx-auto rounded-pill" style="width: 80px; height: 4px;"></div>
+        <section class="section reveal" style="padding: 0 5% 4rem;">
+            <div style="text-align: center; margin-bottom: 5rem;">
+                <span
+                    style="font-weight: 800; color: var(--accent); letter-spacing: 4px; text-transform: uppercase; font-size: 0.9rem; margin-bottom: 1.5rem; display: block;">Beyond
+                    the Code</span>
+                <h1
+                    style="font-size: 6rem; font-weight: 900; letter-spacing: -4px; line-height: 0.9; margin-bottom: 2rem; text-transform: uppercase;">
+                    MASTERY & <br>HONOUR
+                </h1>
+                <div
+                    style="width: 80px; height: 4px; background: var(--accent); margin: 3rem auto; border-radius: 2px;">
+                </div>
             </div>
 
-            <div class="position-relative rounded-5 overflow-hidden shadow-lg border border-5 border-light mb-5"
-                style="height: 70vh;">
-                <img src="images/taekwondo.jpg" alt="Kahlen Ong Action Shot" class="w-100 h-100 object-fit-cover">
-                <div class="position-absolute bottom-0 end-0 p-4 p-md-5 text-end text-white"
-                    style="text-shadow: 0 4px 20px rgba(0,0,0,0.5);">
-                    <p class="h2 fw-black mb-1">TAEKWONDO</p>
-                    <p class="h5 fw-semibold opacity-75">2nd Dan Black Belt | Coach | Referee</p>
+            <div
+                style="position: relative; border-radius: 60px; overflow: hidden; height: 85vh; margin-bottom: 6rem; box-shadow: 0 60px 120px rgba(0,0,0,0.15); border: 12px solid var(--bg-soft);">
+                <img src="images/taekwondo.jpg" alt="Kahlen Ong Action Shot"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+                <div
+                    style="position: absolute; bottom: 4rem; right: 4rem; text-align: right; color: white; text-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                    <p style="font-weight: 800; font-size: 1.5rem; letter-spacing: 1px;">TAEKWONDO</p>
+                    <p style="opacity: 0.9; font-weight: 600;">2nd Dan Black Belt | Coach | Referee</p>
                 </div>
             </div>
         </section>
 
         <!-- Content Grid -->
-        <section class="section reveal py-5">
-            <div class="row g-5 align-items-start">
-                <div class="col-lg-7">
-                    <h3 class="display-5 fw-black mb-4 ls-sm">The Discipline of Precision</h3>
-                    <p class="lead text-muted mb-4 fs-5" style="line-height: 1.9;">
+        <section class="section reveal" style="padding: 0 5% 8rem;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8rem; align-items: start;">
+                <div>
+                    <h3
+                        style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 2.5rem; line-height: 1.1;">
+                        The Discipline of Precision</h3>
+                    <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.9; margin-bottom: 2rem;">
                         My professional identity lies at the crossroads of technical mastery and martial discipline.
                         Beyond the realm of Boolean logic and neural networks, my life is shaped by the exacting
                         principles of Taekwondo. As a 2nd Dan Black Belt, certified Coach, and qualified Referee, I have
                         dedicated more than a decade to cultivating the harmony between power and restraint, strategy
-                        and execution.
+                        and
+                        execution.
                     </p>
-                    <p class="text-muted fs-5" style="line-height: 1.9;">
+                    <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.9;">
                         This journey goes beyond physical mastery; it is a core philosophy of resilience. I apply the
                         tenets of perseverance, integrity, and indomitable spirit to every engineering challenge I
-                        encounter. This dual pursuit—precision in technology and discipline in martial arts—defines not
+                        encounter.
+                        This dual pursuit—precision in technology and discipline in martial arts—defines not
                         only how I work, but how I live.
                     </p>
                 </div>
 
-                <div class="col-lg-5 text-center text-lg-start">
-                    <div class="row g-4">
-                        <div class="col-12">
-                            <div class="luxe-card p-5 bg-light rounded-4">
-                                <h4 class="h4 fw-bold mb-3 text-dark">Strategic Mentorship</h4>
-                                <p class="text-muted mb-0">Whether mentoring emerging athletes on the mats or
-                                    architecting complex datasets, the discipline of the dojang informs my commitment to
-                                    precision and continuous improvement.</p>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="luxe-card p-5 bg-light rounded-4">
-                                <h4 class="h4 fw-bold mb-3 text-dark">Indomitable Spirit</h4>
-                                <p class="text-muted mb-0">I embrace the unyielding pursuit of excellence in all facets
-                                    of life, treating every technical blocker as a challenge to be overcome with
-                                    strategic focus.</p>
-                            </div>
-                        </div>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                    <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft); border-radius: 32px;">
+                        <h4 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-main);">Strategic
+                            Mentorship</h4>
+                        <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.7;">Whether mentoring
+                            emerging athletes on the mats or architecting complex datasets, the discipline of the dojang
+                            informs my commitment to precision and continuous improvement.</p>
+                    </div>
+                    <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft); border-radius: 32px;">
+                        <h4 style="font-size: 1.4rem; margin-bottom: 1rem; color: var(--text-main);">Indomitable Spirit
+                        </h4>
+                        <p style="font-size: 1rem; color: var(--text-muted); line-height: 1.7;">I embrace the unyielding
+                            pursuit of excellence in all facets of life, treating every technical blocker as a challenge
+                            to be overcome with strategic focus.</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="container-fluid px-lg-5 py-5 border-top mt-5">
-        <p class="m-0 text-muted small">&copy; 2026 KAHLEN ONG. ALL RIGHTS RESERVED.</p>
+    <footer>
+        <p>&copy; 2026 KAHLEN ONG. ALL RIGHTS RESERVED.</p>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 

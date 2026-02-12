@@ -5,76 +5,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kahlen Ong | Applied AI & Analytics</title>
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom Style -->
     <link rel="stylesheet" href="style.css">
     <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <!-- Bootstrap Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light nav-bar" id="nav">
-        <div class="container-fluid px-4 px-lg-5">
-            <a href="index.html" class="navbar-brand logo">Kahlen<span>.</span></a>
-            <button class="navbar-toggler border-0 shadow-none" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navContent">
-                <ul class="navbar-nav nav-links align-items-center mt-3 mt-lg-0">
-                    <li class="nav-item mx-lg-3"><a href="index.html" class="nav-link active">Home</a></li>
-                    <li class="nav-item mx-lg-3"><a href="about.html" class="nav-link">About</a></li>
-                    <li class="nav-item mx-lg-3"><a href="projects.html" class="nav-link">Projects</a></li>
-                    <li class="nav-item mx-lg-3"><a href="life.html" class="nav-link">Life</a></li>
-                    <li class="nav-item mx-lg-3"><a href="contact.html" class="nav-link">Contact</a></li>
-                </ul>
-            </div>
-        </div>
+    <nav class="nav-bar" id="nav">
+        <a href="index.html" class="logo">Kahlen<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="life.html">Life</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
     <main>
-        <!-- Hero Section with Bootstrap Grid -->
-        <header class="hero d-flex align-items-center">
-            <div class="container-fluid px-lg-5 h-100">
-                <div class="row h-100 align-items-center">
-                    <div class="col-lg-7 hero-content reveal">
-                        <span class="hero-sub mb-3">Applied AI & Analytics</span>
-                        <h1 class="hero-name">HI, I'M<br>KAHLEN ONG<span>.</span></h1>
-                        <p class="hero-desc mb-5">Pioneering the intersection of data-driven intelligence and high-end
-                            digital
-                            architecture. I focus on engineering systems that do more than process data—they create
-                            meaningful
-                            narratives.</p>
-                        <div class="d-flex gap-3">
-                            <a href="about.html" class="btn btn-dark">View My Journey <i
-                                    class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-lg-5 hero-image reveal mt-5 mt-lg-0">
-                        <div class="hero-image-inner mx-auto">
-                            <img src="images/photo.jpg" alt="Kahlen Ong Professional Portrait">
-                        </div>
-                    </div>
+        <header class="hero">
+            <div class="hero-content reveal">
+                <span class="hero-sub">Applied AI & Analytics</span>
+                <h1 class="hero-name">HI, I'M<br>KAHLEN ONG<span>.</span></h1>
+                <p class="hero-desc">Pioneering the intersection of data-driven intelligence and high-end digital
+                    architecture. I focus on engineering systems that do more than process data—they create meaningful
+                    narratives.</p>
+                <div style="display: flex; gap: 1.5rem;">
+                    <a href="about.html" class="btn btn-dark">View My Journey <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="hero-image reveal">
+                <div class="hero-image-inner">
+                    <img src="images/photo.jpg" alt="Kahlen Ong Professional Portrait">
                 </div>
             </div>
         </header>
 
     </main>
 
-    <footer
-        class="container-fluid px-lg-5 py-5 border-top d-flex flex-column flex-md-row justify-content-between align-items-center text-muted">
-        <p class="m-0 mb-3 mb-md-0">&copy; 2026 KAHLEN ONG. ALL RIGHTS RESERVED.</p>
-        <div class="d-flex gap-4">
+    <footer>
+        <p>&copy; 2026 KAHLEN ONG. ALL RIGHTS RESERVED.</p>
+        <div style="display: flex; gap: 2rem;">
             <a href="https://www.linkedin.com/in/kahlen-ong-8b086838a" target="_blank"
-                class="text-reset text-decoration-none small fw-bold">LINKEDIN</a>
-            <a href="kahlen's resume.pdf" download class="text-reset text-decoration-none small fw-bold">RESUME</a>
+                style="color: inherit; text-decoration: none;">LINKEDIN</a>
+            <a href="kahlen's resume.pdf" download style="color: inherit; text-decoration: none;">RESUME</a>
         </div>
     </footer>
 
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 </body>
 
