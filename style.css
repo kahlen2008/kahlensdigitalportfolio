@@ -88,6 +88,26 @@ body {
     color: var(--text-main);
 }
 
+/* Hamburger Menu Icon */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 1100;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background: var(--text-main);
+    transition: all 0.3s var(--ease);
+}
+
 /* Hero Section */
 .hero {
     height: 100vh;
@@ -382,6 +402,26 @@ footer {
     line-height: 1.6;
 }
 
+/* Bootstrap Override Reset */
+/* Ensure Bootstrap doesn't overwrite your curated styling */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-size: 16px;
+    /* Reset Bootstrap's default body font size if needed */
+}
+
 /* Image Viewer / Lightbox */
 .image-viewer-overlay {
     position: fixed;
@@ -453,6 +493,7 @@ footer {
     transform: translateY(0);
 }
 
+/* Responsive Design */
 @media (max-width: 968px) {
     .hero {
         grid-template-columns: 1fr;
@@ -465,19 +506,77 @@ footer {
         height: 50vh;
         order: -1;
     }
-}
 
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
+    .section {
+        padding: 60px 5%;
+    }
+
+    [style*="grid-template-columns"] {
+        grid-template-columns: 1fr !important;
+        gap: 3rem !important;
     }
 
     .hero-name {
-        font-size: 3.5rem;
-        letter-spacing: -2px;
+        font-size: 4rem;
     }
 
-    .hero-image {
-        display: none;
+    footer {
+        flex-direction: column;
+        gap: 2rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-bar {
+        padding: 1rem 5%;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        transition: right 0.5s var(--ease);
+        z-index: 1050;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+
+    /* Hamburger Animation */
+    .nav-toggle.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .hero-name {
+        font-size: 3rem;
+    }
+
+    .section {
+        padding: 40px 5%;
     }
 }
