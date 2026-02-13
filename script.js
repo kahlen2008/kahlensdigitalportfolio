@@ -129,4 +129,180 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = 'auto'; // Restore scroll
         }
     };
+
+    // Journey Card Toggle (Case Study page)
+    window.toggleCard = (card) => {
+        const wasExpanded = card.classList.contains('expanded');
+
+        // Close all cards
+        document.querySelectorAll('.journey-card').forEach(c => {
+            c.classList.remove('expanded');
+        });
+
+        // Open this card if it wasn't already open
+        if (!wasExpanded) {
+            card.classList.add('expanded');
+        }
+    };
+
+    // Scroll to and expand a journey card (from stat buttons)
+    window.scrollToCard = (cardId) => {
+        const card = document.getElementById(cardId);
+        if (card) {
+            // Close all cards first
+            document.querySelectorAll('.journey-card').forEach(c => {
+                c.classList.remove('expanded');
+            });
+
+            // Expand this card
+            card.classList.add('expanded');
+
+            // Smooth scroll with offset for navbar
+            setTimeout(() => {
+                const rect = card.getBoundingClientRect();
+                const offset = window.scrollY + rect.top - 120;
+                window.scrollTo({ top: offset, behavior: 'smooth' });
+            }, 100);
+        }
+    };
+
+    // Tech Detail Panel
+    window.showTechDetail = (item) => {
+        const panel = document.getElementById('techDetailPanel');
+        const title = document.getElementById('techDetailTitle');
+        const text = document.getElementById('techDetailText');
+
+        if (!panel || !title || !text) return;
+
+        const techName = item.getAttribute('data-tech');
+        const techDetail = item.getAttribute('data-detail');
+
+        // If clicking the same item that's already active, close it
+        if (item.classList.contains('active')) {
+            item.classList.remove('active');
+            panel.classList.remove('active');
+            return;
+        }
+
+        // Remove active from all tech items
+        document.querySelectorAll('.tech-item').forEach(t => {
+            t.classList.remove('active');
+        });
+
+        // Set this one as active
+        item.classList.add('active');
+
+        // Update panel content
+        title.textContent = techName;
+        text.textContent = techDetail;
+
+        // Show panel
+        panel.classList.add('active');
+
+        // Auto-scroll only if the detail panel is off-screen
+        setTimeout(() => {
+            const panelRect = panel.getBoundingClientRect();
+            const isVisible = panelRect.top >= 0 && panelRect.bottom <= window.innerHeight;
+            if (!isVisible) {
+                panel.scrollIntoView({ behavior: 'smooth', block: 'end' });
+            }
+        }, 400);
+    };
+
+    window.closeTechDetail = (e) => {
+        e.stopPropagation();
+        const panel = document.getElementById('techDetailPanel');
+        if (panel) {
+            panel.classList.remove('active');
+        }
+        document.querySelectorAll('.tech-item').forEach(t => {
+            t.classList.remove('active');
+        });
+    };
+
+    // Auto-expand first journey card
+    const firstCard = document.querySelector('.journey-card');
+    if (firstCard) {
+        setTimeout(() => {
+            firstCard.classList.add('expanded');
+        }, 800);
+    }
+
+    // Custom Video Player
+    const video = document.getElementById('demoVideo');
+    const overlay = document.getElementById('videoPlayOverlay');
+    const player = document.getElementById('videoPlayer');
+    const playBtn = document.getElementById('vcPlayBtn');
+    const progressFilled = document.getElementById('vcProgressFilled');
+    const timeDisplay = document.getElementById('vcTime');
+
+    if (video) {
+        const formatTime = (s) => {
+            const m = Math.floor(s / 60);
+            const sec = Math.floor(s % 60);
+            return m + ':' + (sec < 10 ? '0' : '') + sec;
+        };
+
+        video.addEventListener('timeupdate', () => {
+            if (video.duration) {
+                const pct = (video.currentTime / video.duration) * 100;
+                progressFilled.style.width = pct + '%';
+                timeDisplay.textContent = formatTime(video.currentTime) + ' / ' + formatTime(video.duration);
+            }
+        });
+
+        video.addEventListener('ended', () => {
+            player.classList.remove('playing');
+            overlay.classList.remove('hidden');
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        });
+
+        // Click video itself to toggle play
+        video.addEventListener('click', () => {
+            window.togglePlay();
+        });
+    }
+
+    window.togglePlay = () => {
+        if (!video) return;
+        if (video.paused) {
+            video.play();
+            player.classList.add('playing');
+            overlay.classList.add('hidden');
+            playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+            video.pause();
+            player.classList.remove('playing');
+            overlay.classList.remove('hidden');
+            playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+    };
+
+    window.seekVideo = (e) => {
+        if (!video) return;
+        const bar = document.getElementById('vcProgress');
+        const rect = bar.getBoundingClientRect();
+        const pct = (e.clientX - rect.left) / rect.width;
+        video.currentTime = pct * video.duration;
+    };
+
+    window.toggleFullscreen = () => {
+        if (!player) return;
+        if (!document.fullscreenElement) {
+            player.requestFullscreen().catch(() => { });
+        } else {
+            document.exitFullscreen();
+        }
+    };
+
+    // Handle fullscreen change — auto-play on enter, update icon
+    document.addEventListener('fullscreenchange', () => {
+        const fsBtn = player?.querySelector('.vc-btn:last-child i');
+        if (document.fullscreenElement === player) {
+            if (fsBtn) fsBtn.className = 'fas fa-compress';
+            if (video.paused) window.togglePlay();
+        } else {
+            if (fsBtn) fsBtn.className = 'fas fa-expand';
+        }
+    });
 });

@@ -28,149 +28,516 @@
         </ul>
     </nav>
 
-    <main style="padding-top: 120px; position: relative; z-index: 1;">
-        <section class="section reveal" style="max-width: 1000px; margin: 0 auto; padding-left: 0; padding-right: 0;">
+    <main style="padding-top: 90px; position: relative; z-index: 1;">
+
+        <!-- Back Link + Hero -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
             <a href="projects.html"
-                style="text-decoration: none; color: var(--accent); font-weight: 700; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 4rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
+                style="text-decoration: none; color: var(--accent); font-weight: 700; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 2rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
                 <i class="fas fa-arrow-left"></i> Back to Projects
             </a>
 
-            <div style="text-align: center; margin-bottom: 6rem;">
+            <div style="text-align: center; margin-bottom: 3rem;">
                 <span
-                    style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem; display: block;">Case
-                    Study</span>
+                    style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem; display: block;">Full-Stack
+                    Case Study</span>
                 <h1
                     style="font-size: 5rem; font-weight: 900; letter-spacing: -4px; line-height: 0.9; margin-bottom: 2rem; text-transform: uppercase;">
                     Bridgify</h1>
                 <p
-                    style="font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.6;">
-                    Architecting the future of intergenerational community engagement through high-integrity full-stack
-                    development.
+                    style="font-size: 1.25rem; color: var(--text-main); max-width: 700px; margin: 0 auto; line-height: 1.6;">
+                    As one of the full-stack developers on this project, I was tasked with architecting the
+                    Event &amp; Booking Management System — the platform's core module for community engagement.
                 </p>
             </div>
 
-            <!-- Cinematic Video Demo -->
+            <!-- Project Quick Stats -->
+            <div class="stats-row reveal">
+                <div class="stat-item" onclick="scrollToCard('journey-problem')">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-label">Client</div>
+                    <div class="stat-value">Bridgify<br>Platform</div>
+                </div>
+                <div class="stat-item" onclick="scrollToCard('journey-role')">
+                    <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="stat-label">Role</div>
+                    <div class="stat-value">Full-Stack<br>Developer</div>
+                </div>
+                <div class="stat-item" onclick="scrollToCard('journey-solution')">
+                    <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="stat-label">Focus</div>
+                    <div class="stat-value">Event &<br>Booking System</div>
+                </div>
+                <div class="stat-item" onclick="scrollToCard('journey-process')">
+                    <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="stat-label">My Scope</div>
+                    <div class="stat-value">Event &<br>Booking Module</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Demo -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
             <div style="text-align: center; margin-bottom: 3rem;">
                 <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -1px;">Full
                     Platform Walkthrough</h2>
-                <p style="font-size: 1.1rem; color: var(--text-muted);">Here's a cinematic demo showcasing the specific
-                    modules and user workflows I engineered for Bridgify.</p>
+                <p style="font-size: 1.1rem; color: var(--text-muted);">A cinematic demo showcasing the modules and
+                    user workflows I engineered.</p>
             </div>
-
-            <div style="margin-bottom: 8rem;">
-                <div
-                    style="background: #000; border-radius: 40px; overflow: hidden; position: relative; width: 100%; aspect-ratio: 16/9; box-shadow: 0 60px 120px rgba(0,0,0,0.2); border: 12px solid var(--bg-soft);">
-                    <video controls style="width: 100%; height: 100%; object-fit: cover; display: block;">
+            <div style="margin-bottom: 5rem;">
+                <div class="video-player" id="videoPlayer">
+                    <video id="demoVideo" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         <source src="videos/bridgifydemo.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                </div>
 
-                <div style="margin-top: 3rem; display: flex; flex-direction: column; align-items: center; gap: 2rem;">
-                    <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-                        <span
-                            style="padding: 8px 20px; background: var(--bg-soft); border-radius: 100px; font-size: 0.8rem; font-weight: 800; color: var(--text-main); border: 1px solid var(--border);">PYTHON
-                            (FLASK)</span>
-                        <span
-                            style="padding: 8px 20px; background: var(--bg-soft); border-radius: 100px; font-size: 0.8rem; font-weight: 800; color: var(--text-main); border: 1px solid var(--border);">SQLITE</span>
-                        <span
-                            style="padding: 8px 20px; background: var(--bg-soft); border-radius: 100px; font-size: 0.8rem; font-weight: 800; color: var(--text-main); border: 1px solid var(--border);">JINJA2</span>
-                        <span
-                            style="padding: 8px 20px; background: var(--bg-soft); border-radius: 100px; font-size: 0.8rem; font-weight: 800; color: var(--text-main); border: 1px solid var(--border);">UI
-                            ARCHITECTURE</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Deep Dive Contributions -->
-            <div style="margin-bottom: 10rem;">
-                <div style="text-align: center; margin-bottom: 5rem;">
-                    <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.5rem;">Key
-                        Features Developed</h2>
-                    <p
-                        style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.8;">
-                        I engineered the core functional modules of Bridgify, focusing on building a resilient and
-                        user-centric platform for intergenerational connection.
-                    </p>
-                </div>
-
-                <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 2.5rem;">
-                    <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                        <div
-                            style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                            <i class="fas fa-calendar-alt"></i>
-                        </div>
-                        <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Event Management</h4>
-                        <ul
-                            style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Full CRUD
-                                functionality via Admin Panel</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                                Calendar-based display with status highlights</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Real-time
-                                updates across all view states</li>
-                        </ul>
+                    <!-- Play overlay (big center play button) -->
+                    <div class="video-play-overlay" id="videoPlayOverlay" onclick="togglePlay()">
+                        <div class="video-play-btn"><i class="fas fa-play"></i></div>
                     </div>
 
-                    <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                        <div
-                            style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                            <i class="fas fa-book-open"></i>
+                    <!-- Custom Controls -->
+                    <div class="video-controls" id="videoControls">
+                        <button class="vc-btn" id="vcPlayBtn" onclick="togglePlay()">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <div class="vc-progress" id="vcProgress" onclick="seekVideo(event)">
+                            <div class="vc-progress-filled" id="vcProgressFilled"></div>
                         </div>
-                        <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Booking System</h4>
-                        <ul
-                            style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Event
-                                browsing and seamless registration</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Rigid
-                                form validation for data reliability</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                                Withdrawal
-                                logic with automated status updates</li>
-                        </ul>
-                    </div>
-
-                    <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                        <div
-                            style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                            <i class="fas fa-lightbulb"></i>
-                        </div>
-                        <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Suggestion Workflow</h4>
-                        <ul
-                            style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                                Modal-based community idea submission</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Admin
-                                review & conversion to official events</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Automated
-                                integration into events database</li>
-                        </ul>
-                    </div>
-
-                    <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                        <div
-                            style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                            <i class="fas fa-user-shield"></i>
-                        </div>
-                        <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Admin Infrastructure
-                        </h4>
-                        <ul
-                            style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                                High-security password-protected access</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Dynamic
-                                engagement monitoring dashboard</li>
-                            <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Instant
-                                UI
-                                reflection of backend state changes</li>
-                        </ul>
+                        <span class="vc-time" id="vcTime">0:00 / 0:00</span>
+                        <button class="vc-btn" onclick="toggleFullscreen()">
+                            <i class="fas fa-expand"></i>
+                        </button>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Call to Action -->
+        <!-- Tech Stack -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1rem;">
+                    Technology Stack</h2>
+                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">Click any
+                    technology to see how I used it in this project.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="Python"
+                    data-detail="Used as the primary backend language for all server-side logic. Wrote route handlers, database queries, form validation, and business logic including the approval pipeline, booking management, and secure admin authentication workflows.">
+                    <i class="fab fa-python"></i>
+                    <span>Python</span>
+                    <small>Backend Logic</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="Flask"
+                    data-detail="Flask served as the web framework powering all HTTP routing, request handling, and template rendering. I designed RESTful routes for event CRUD, booking submissions, and admin workflows with clean separation of concerns.">
+                    <i class="fas fa-pepper-hot"></i>
+                    <span>Flask</span>
+                    <small>Web Framework</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="SQLite"
+                    data-detail="Implemented as the relational database with separate tables for Events, Bookings, and Suggestions. Designed the schema with appropriate fields, relationships, and constraints to ensure data integrity across the full pipeline.">
+                    <i class="fas fa-database"></i>
+                    <span>SQLite</span>
+                    <small>Database</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="SQL"
+                    data-detail="Wrote raw SQL queries for full CRUD operations: INSERT for creating events and bookings, SELECT with JOINs for calendar display, UPDATE for status changes and approvals, and DELETE for event removal and booking withdrawals.">
+                    <i class="fas fa-code"></i>
+                    <span>SQL</span>
+                    <small>Data Queries</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="HTML5"
+                    data-detail="Built semantic page structures for the calendar view, booking forms, admin dashboard, and suggestion panels. Used proper form elements with validation attributes for accessible, standards-compliant, and well-structured markup throughout the application.">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                    <small>Structure</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="CSS3"
+                    data-detail="Designed a cohesive visual system with responsive layouts, modal animations, status-based colour coding for events, hover effects, and mobile-first media queries to deliver a polished and professional user interface.">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                    <small>Styling</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="JavaScript"
+                    data-detail="Implemented client-side interactivity: modal open/close logic, form validation with real-time error feedback, dynamic calendar rendering, date/time constraint enforcement, and admin panel interactions—all without requiring full page reloads.">
+                    <i class="fab fa-js-square"></i>
+                    <span>JavaScript</span>
+                    <small>Interactivity</small>
+                </div>
+                <div class="tech-item" onclick="showTechDetail(this)" data-tech="Jinja2"
+                    data-detail="Used Flask's Jinja2 engine to dynamically render database content into HTML templates. Implemented loops for event listings, conditionals for role-based UI, and template inheritance for consistent page layouts. Injected approved suggestion data into event creation forms via template variables.">
+                    <i class="fas fa-file-code"></i>
+                    <span>Jinja2</span>
+                    <small>Templating</small>
+                </div>
+            </div>
+
+            <!-- Tech Detail Panel -->
+            <div class="tech-detail-panel" id="techDetailPanel">
+                <div class="tech-detail-inner">
+                    <div class="tech-detail-header">
+                        <h4 id="techDetailTitle">Python</h4>
+                        <button class="tech-detail-close" onclick="closeTechDetail(event)"><i
+                                class="fas fa-times"></i></button>
+                    </div>
+                    <p id="techDetailText">Details here</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Journey Cards -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1rem;">
+                    Project Journey</h2>
+                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;">Click each
+                    phase to explore the full depth of my contribution.</p>
+            </div>
+
+            <!-- Expandable Cards -->
+            <div class="journey-cards">
+
+                <!-- Card 1: The Problem -->
+                <div class="journey-card" id="journey-problem" onclick="toggleCard(this)">
+                    <div class="journey-card-header">
+                        <div class="journey-card-number">01</div>
+                        <div class="journey-card-info">
+                            <h3>The Problem</h3>
+                            <p>Client's challenge and project scope</p>
+                        </div>
+                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="journey-card-body">
+                        <div class="journey-card-content">
+                            <p>Singapore's ageing population faces increasing social isolation. Community centres
+                                needed a structured digital system to manage intergenerational engagement programmes,
+                                but relied on manual, error-prone coordination processes.</p>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-exclamation-triangle"></i> Core Challenge</h5>
+                                    <p>No structured system for event coordination—manual tracking led to
+                                        double-bookings, missed registrations, and lost community suggestions.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-crosshairs"></i> Project Scope</h5>
+                                    <p>Build a complete Event & Booking Management System with admin moderation,
+                                        user registration, and a community-driven suggestion pipeline.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: My Role -->
+                <div class="journey-card" id="journey-role" onclick="toggleCard(this)">
+                    <div class="journey-card-header">
+                        <div class="journey-card-number">02</div>
+                        <div class="journey-card-info">
+                            <h3>My Role</h3>
+                            <p>Responsibilities and involvement</p>
+                        </div>
+                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="journey-card-body">
+                        <div class="journey-card-content">
+                            <p>As one of the <strong>full-stack developers</strong> on Bridgify, I was assigned
+                                ownership of the
+                                <strong>Event & Booking Management System</strong> — the platform's most critical
+                                module. I handled the full feature lifecycle for this module, from database schema
+                                design to frontend interactivity.
+                            </p>
+                            <div class="role-tags">
+                                <span class="role-tag"><i class="fas fa-server"></i> Backend Architecture</span>
+                                <span class="role-tag"><i class="fas fa-palette"></i> Frontend Development</span>
+                                <span class="role-tag"><i class="fas fa-database"></i> Database Design</span>
+                                <span class="role-tag"><i class="fas fa-cogs"></i> System Design</span>
+                                <span class="role-tag"><i class="fas fa-shield-alt"></i> Admin Logic</span>
+                                <span class="role-tag"><i class="fas fa-check-double"></i> Form Validation</span>
+                            </div>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-code"></i> Backend (Python & Flask)</h5>
+                                    <p>Designed Flask routes for event CRUD, booking management, suggestion submissions,
+                                        and admin approval workflows. Each route follows clean request handling: receive
+                                        form data → validate input → execute SQL → commit changes → redirect.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-laptop-code"></i> Frontend (HTML, CSS, JS, Jinja)</h5>
+                                    <p>Built modal-based UI for event creation, suggestions, and admin review. Used
+                                        Jinja templating for dynamic data rendering and JavaScript for smooth
+                                        interactions without full page reloads.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Solution & Thinking -->
+                <div class="journey-card" id="journey-solution" onclick="toggleCard(this)">
+                    <div class="journey-card-header">
+                        <div class="journey-card-number">03</div>
+                        <div class="journey-card-info">
+                            <h3>Solution Design</h3>
+                            <p>Thinking process and architecture decisions</p>
+                        </div>
+                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="journey-card-body">
+                        <div class="journey-card-content">
+                            <p>I designed an end-to-end workflow that transforms community suggestions into published
+                                events through a structured moderation pipeline.</p>
+
+                            <div class="workflow-timeline">
+                                <div class="workflow-step">
+                                    <div class="workflow-dot"></div>
+                                    <div class="workflow-content">
+                                        <h5>User Submits Suggestion</h5>
+                                        <p>Community members propose event ideas through a modal form. Submission is
+                                            stored with "Pending" status.</p>
+                                    </div>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="workflow-dot"></div>
+                                    <div class="workflow-content">
+                                        <h5>Admin Reviews in Dashboard</h5>
+                                        <p>Administrators access a dedicated suggestions panel to review, approve, or
+                                            reject proposals.</p>
+                                    </div>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="workflow-dot"></div>
+                                    <div class="workflow-content">
+                                        <h5>Auto-Fill Event Creation</h5>
+                                        <p>Upon approval, the title and description auto-populate the event creation
+                                            form via hidden input fields and Jinja template variables.</p>
+                                    </div>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="workflow-dot"></div>
+                                    <div class="workflow-content">
+                                        <h5>Event Published to Calendar</h5>
+                                        <p>Admin sets date, time, and location. Event commits to the database and
+                                            appears on the user calendar immediately.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-grid" style="margin-top: 2rem;">
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-database"></i> Database Architecture</h5>
+                                    <p>Implemented a relational SQLite database with separate tables for <strong>Events,
+                                            Bookings, and Suggestions</strong>. Each table was structured with
+                                        appropriate
+                                        fields and relationships to maintain data consistency across the pipeline.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-shield-alt"></i> Validation & Integrity</h5>
+                                    <p>Built server-side form validation to prevent partial or invalid submissions.
+                                        Implemented date/time constraints so past events cannot be created, and end
+                                        times must follow start times.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Work Process -->
+                <div class="journey-card" id="journey-process" onclick="toggleCard(this)">
+                    <div class="journey-card-header">
+                        <div class="journey-card-number">04</div>
+                        <div class="journey-card-info">
+                            <h3>Work Process</h3>
+                            <p>Execution, challenges, and problem-solving</p>
+                        </div>
+                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="journey-card-body">
+                        <div class="journey-card-content">
+                            <p>Building a production-style system required iterative development, debugging, and
+                                adapting to unexpected constraints.</p>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-route"></i> Development Approach</h5>
+                                    <p>I followed an iterative process: build core CRUD first, then layer on the
+                                        suggestion workflow, admin panel, and validation logic. Each feature was
+                                        tested independently before integration.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-bug"></i> Challenges Encountered</h5>
+                                    <p>Database migration issues when restructuring tables, modal state management
+                                        across multiple forms, and ensuring real-time updates reflected correctly
+                                        across all view states without full page reloads.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-tools"></i> Problem-Solving</h5>
+                                    <p>Implemented a custom DatabaseHelper class to abstract SQL operations,
+                                        designed a robust status-tracking system for suggestions, and built
+                                        cascading UI updates to ensure frontend-backend synchronisation.</p>
+                                </div>
+                                <div class="detail-item">
+                                    <h5><i class="fas fa-check-circle"></i> Quality Assurance</h5>
+                                    <p>Rigorous form validation including date constraints, slot availability checks,
+                                        and input sanitisation. Admin actions are access-controlled with password
+                                        authentication.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Outcomes -->
+                <div class="journey-card" id="journey-outcomes" onclick="toggleCard(this)">
+                    <div class="journey-card-header">
+                        <div class="journey-card-number">05</div>
+                        <div class="journey-card-info">
+                            <h3>Outcomes & Impact</h3>
+                            <p>Results achieved and skills demonstrated</p>
+                        </div>
+                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
+                    </div>
+                    <div class="journey-card-body">
+                        <div class="journey-card-content">
+                            <p>My implementation of the Event & Booking module transformed event coordination from a
+                                manual process into a
+                                structured digital system.</p>
+
+                            <div class="impact-grid">
+                                <div class="impact-item">
+                                    <div class="impact-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                    <h5>Reduced Admin Workload</h5>
+                                    <p>Automated event creation from community suggestions, eliminating manual data
+                                        entry.</p>
+                                </div>
+                                <div class="impact-item">
+                                    <div class="impact-icon"><i class="fas fa-expand-arrows-alt"></i></div>
+                                    <h5>Scalable Architecture</h5>
+                                    <p>Modular codebase enables easy addition of new features without restructuring.
+                                    </p>
+                                </div>
+                                <div class="impact-item">
+                                    <div class="impact-icon"><i class="fas fa-heart"></i></div>
+                                    <h5>Community Participation</h5>
+                                    <p>Suggestion pipeline empowers users to shape their own programme offerings.</p>
+                                </div>
+                                <div class="impact-item">
+                                    <div class="impact-icon"><i class="fas fa-chart-line"></i></div>
+                                    <h5>Measurable Engagement</h5>
+                                    <p>Admin dashboard provides real-time visibility into bookings and event
+                                        analytics.</p>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 3rem;">
+                                <h5 style="font-weight: 800; margin-bottom: 1.5rem; font-size: 1.1rem;">Key Technical
+                                    Skills Demonstrated</h5>
+                                <div class="skills-showcase">
+                                    <span>Full-Stack Development</span>
+                                    <span>Relational Database Design</span>
+                                    <span>Server-Side Validation</span>
+                                    <span>CRUD Implementation</span>
+                                    <span>Role-Based Access Control</span>
+                                    <span>Workflow Architecture</span>
+                                    <span>Dynamic Templating</span>
+                                    <span>Data Consistency</span>
+                                    <span>Modal UI Design</span>
+                                    <span>RESTful Routing</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Key Features Developed (original cards) -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.5rem;">Core
+                    Modules Delivered</h2>
+                <p
+                    style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.8;">
+                    Each module was engineered for reliability, scalability, and seamless user experience.
+                </p>
+            </div>
+
+            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 2.5rem;">
+                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
+                    <div
+                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Event Management</h4>
+                    <ul
+                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Full CRUD
+                            functionality via Admin Panel</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
+                            Calendar-based display with status highlights</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Real-time
+                            updates across all view states</li>
+                    </ul>
+                </div>
+
+                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
+                    <div
+                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Booking System</h4>
+                    <ul
+                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Event
+                            browsing and seamless registration</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Rigid
+                            form validation for data reliability</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
+                            Withdrawal logic with automated status updates</li>
+                    </ul>
+                </div>
+
+                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
+                    <div
+                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Suggestion Workflow</h4>
+                    <ul
+                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
+                            Modal-based community idea submission</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Admin
+                            review & conversion to official events</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Automated
+                            integration into events database</li>
+                    </ul>
+                </div>
+
+                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
+                    <div
+                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Admin Infrastructure
+                    </h4>
+                    <ul
+                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
+                            High-security password-protected access</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Dynamic
+                            engagement monitoring dashboard</li>
+                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Instant UI
+                            reflection of backend state changes</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto; padding-bottom: 6rem;">
             <div
-                style="text-align: center; padding: 6rem; background: var(--bg-dark); border-radius: 40px; color: white; margin-bottom: 5rem;">
+                style="text-align: center; padding: 6rem; background: var(--bg-dark); border-radius: 40px; color: white;">
                 <h3 style="font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem;">Interested in the Tech?</h3>
                 <p style="color: rgba(255,255,255,0.6); margin-bottom: 3rem; font-size: 1.1rem;">Let's discuss the
                     architectural decisions behind Bridgify.</p>
