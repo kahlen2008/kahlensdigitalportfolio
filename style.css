@@ -997,7 +997,7 @@ body {
 }
 
 .journey-card.expanded .journey-card-body {
-    max-height: 1200px;
+    max-height: 2000px;
 }
 
 .journey-card-content {
@@ -1024,6 +1024,9 @@ body {
     background: var(--bg-soft);
     border-radius: 16px;
     border: 1px solid var(--border);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 .detail-item h5 {
@@ -1139,6 +1142,9 @@ body {
     border: 1px solid var(--border);
     text-align: center;
     transition: all 0.4s var(--ease);
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    min-width: 0;
 }
 
 .impact-item:hover {
@@ -1246,7 +1252,7 @@ body {
 
     .detail-grid,
     .impact-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .hero-name {
