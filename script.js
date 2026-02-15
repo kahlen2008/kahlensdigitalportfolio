@@ -305,4 +305,34 @@ document.addEventListener('DOMContentLoaded', () => {
             if (fsBtn) fsBtn.className = 'fas fa-expand';
         }
     });
+
+    // Skill Tag Click Logic (Interactive Expertise Card)
+    const skillTags = document.querySelectorAll('.skill-tag');
+    const descArea = document.getElementById('skill-desc-area');
+    const descText = document.getElementById('skill-desc-text');
+
+    if (skillTags.length > 0 && descArea && descText) {
+        skillTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                const desc = tag.getAttribute('data-desc');
+                if (!desc) return;
+
+                // If clicking the same one, just return or toggle
+                if (tag.classList.contains('active')) return;
+
+                // Remove active from all tags
+                skillTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+
+                // Animate change
+                descArea.style.display = 'block';
+                descText.style.opacity = '0';
+
+                setTimeout(() => {
+                    descText.textContent = desc;
+                    descText.style.opacity = '1';
+                }, 100);
+            });
+        });
+    }
 });
