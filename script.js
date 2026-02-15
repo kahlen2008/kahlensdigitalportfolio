@@ -331,7 +331,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     descText.textContent = desc;
                     descText.style.opacity = '1';
-                }, 100);
+
+                    // Auto-scroll if the description area is not fully visible
+                    const rect = descArea.getBoundingClientRect();
+                    const isFullyVisible = (rect.top >= 0 && rect.bottom <= window.innerHeight);
+
+                    if (!isFullyVisible) {
+                        descArea.scrollIntoView({ behavior: 'smooth', block: 'end' });
+                    }
+                }, 300);
             });
         });
     }
