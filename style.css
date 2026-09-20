@@ -1273,20 +1273,30 @@ body {
 }
 
 .role-tag {
-    padding: 10px 20px;
-    background: rgba(37, 99, 235, 0.08);
-    border: 1px solid rgba(37, 99, 235, 0.15);
+    padding: 8px 18px;
+    background: white;
+    border: 1px solid var(--border);
     border-radius: 100px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    color: var(--accent);
+    color: var(--text-main);
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s var(--ease);
+    cursor: default;
+}
+
+.role-tag:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.3);
 }
 
 .role-tag i {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--accent);
 }
 
 /* Workflow Timeline */
@@ -1298,18 +1308,20 @@ body {
 .workflow-timeline::before {
     content: '';
     position: absolute;
-    left: 7px;
-    top: 8px;
-    bottom: 8px;
+    left: 14px;
+    top: 14px;
+    bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, var(--accent), rgba(37, 99, 235, 0.1));
+    background: linear-gradient(to bottom, var(--accent) 80%, rgba(37, 99, 235, 0));
     border-radius: 2px;
+    z-index: 0;
 }
 
 .workflow-step {
     position: relative;
-    padding-bottom: 2rem;
+    padding-bottom: 2.5rem;
     padding-left: 20px;
+    z-index: 1;
 }
 
 .workflow-step:last-child {
@@ -1324,8 +1336,9 @@ body {
     height: 16px;
     background: var(--accent);
     border-radius: 50%;
-    border: 3px solid white;
+    border: 3px solid var(--bg-soft);
     box-shadow: 0 0 0 2px var(--accent);
+    z-index: 2;
 }
 
 .workflow-content h5 {
@@ -1400,13 +1413,24 @@ body {
 }
 
 .skills-showcase span {
-    padding: 10px 22px;
-    background: var(--bg-dark);
-    color: white;
+    padding: 8px 18px;
+    background: white;
+    color: var(--text-main);
+    border: 1px solid var(--border);
     border-radius: 100px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 700;
     letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s var(--ease);
+    cursor: default;
+}
+
+.skills-showcase span:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.1);
+    border-color: rgba(37, 99, 235, 0.3);
+    color: var(--accent);
 }
 
 /* Responsive Design */

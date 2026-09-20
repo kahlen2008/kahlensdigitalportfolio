@@ -44,50 +44,261 @@
     <main style="padding-top: 100px; position: relative; z-index: 1;">
         <section class="section reveal">
             <div class="section-title" style="margin-bottom: 3rem;">
-                <h2>Featured Case Studies</h2>
+                <h2>Featured Projects</h2>
             </div>
 
-            <!-- Bridgify -->
-            <div
-                style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; margin-bottom: 8rem;">
-                <div style="border-radius: 40px; overflow: hidden; height: 500px; cursor: pointer;"
-                    onclick="openImageViewer('images/bridgify.png')">
-                    <img src="images/bridgify.png" alt="Bridgify Platform Screenshot"
-                        style="width: 100%; height: 100%; object-fit: contain;">
-                </div>
-                <div>
-                    <span
-                        style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem; display: block;">Full
-                        Stack Development</span>
-                    <h3 style="font-size: 3rem; font-weight: 900; line-height: 1.1; margin-bottom: 1.5rem;">Bridgify
-                    </h3>
-                    <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem; line-height: 1.8;">
-                        Bridgify is a sophisticated intergenerational engagement platform architected to proactively
-                        combat social isolation among Singapore's ageing population. By leveraging advanced data-driven
-                        algorithms for precise mentorship matching, the ecosystem fosters meaningful, cross-generational
-                        connections that rebuild community resilience and empower individuals through shared knowledge
-                        and mutual support.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
 
-                    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 3rem;">
+                <!-- Bridgify -->
+                <div class="luxe-card" id="project-bridgify">
+                    <div style="border-radius: 20px; overflow: hidden; height: 220px; margin-bottom: 1.5rem; cursor: pointer;"
+                        onclick="openImageViewer('images/bridgify.png')">
+                        <img src="images/bridgify.png" alt="Bridgify Platform Screenshot"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <span
+                        style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1rem; display: block;">Full
+                        Stack Development</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 0.5rem;">Bridgify
+                    </h3>
+                    <p
+                        style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;">
+                        Event Management &amp; Booking System &nbsp;·&nbsp; October 2025 – February 2026</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
                         <span
-                            style="padding: 6px 15px; background: var(--bg-soft); border-radius: 100px; font-size: 0.75rem; font-weight: 700;">PYTHON
-                            (FLASK)</span>
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">FLASK</span>
                         <span
-                            style="padding: 6px 15px; background: var(--bg-soft); border-radius: 100px; font-size: 0.75rem; font-weight: 700;">SQLITE</span>
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">SQLITE</span>
                         <span
-                            style="padding: 6px 15px; background: var(--bg-soft); border-radius: 100px; font-size: 0.75rem; font-weight: 700;">JINJA2</span>
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">FULLCALENDAR</span>
                         <span
-                            style="padding: 6px 15px; background: var(--bg-soft); border-radius: 100px; font-size: 0.75rem; font-weight: 700;">UI
-                            ARCHITECTURE</span>
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">JINJA2</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">JAVASCRIPT</span>
                     </div>
 
-                    <a href="bridgify-study.html" class="btn btn-dark">Explore Full Study <i
+                    <ul
+                        style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Developed a full-stack event management and booking system with calendar-based browsing,
+                            search, and capacity-controlled registration.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Designed an SQLite relational database and Flask APIs for bookings, withdrawals, and admin
+                            CRUD operations.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Implemented RBAC, validation, and event suggestion workflows, including
+                            duplicate-registration and past-event safeguards.
+                        </li>
+                    </ul>
+
+
+                    <a href="bridgify-study.html" class="btn btn-dark"
+                        style="font-size: 0.8rem; padding: 1rem 1.8rem;">Explore Full Study <i
                             class="fas fa-arrow-right"></i></a>
                 </div>
-            </div>
 
+                <!-- FactorIQ -->
+                <div class="luxe-card" id="project-factoriq">
+                    <div style="border-radius: 20px; overflow: hidden; height: 220px; margin-bottom: 1.5rem; cursor: pointer;"
+                        onclick="openImageViewer('images/factoriq.png')">
+                        <img src="images/factoriq.png" alt="FactorIQ Platform Screenshot"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <span
+                        style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1rem; display: block;">AI
+                        &amp; Cloud Engineering</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 0.5rem;">FactorIQ
+                    </h3>
+                    <p
+                        style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;">
+                        Facility Management System &nbsp;·&nbsp; June – August 2026</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">NEXT.JS</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">FIREBASE</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">FIRESTORE</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">SCIKIT-LEARN</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">VERTEX
+                            AI</span>
+                    </div>
+
+                    <ul
+                        style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Developed the facility management module for environmental monitoring, HACCP compliance,
+                            incident management, and zone monitoring.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Designed Firestore (NoSQL) data structures for real-time sensor data, compliance logs,
+                            incidents, and predictive alerts.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Built Scikit-learn predictive alerts to forecast environmental threshold breaches.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Integrated Vertex AI for image-based pest and hygiene detection with automatic incident
+                            creation.
+                        </li>
+                    </ul>
+
+                    <a href="https://factoriq-265974166164.asia-southeast1.run.app/" target="_blank"
+                        class="btn btn-dark" style="font-size: 0.8rem; padding: 1rem 1.8rem;">View Live <i
+                            class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <!-- A-Level Motivation Web App -->
+                <div class="luxe-card" id="project-motivation-app">
+                    <div style="border-radius: 20px; overflow: hidden; height: 220px; margin-bottom: 1.5rem; cursor: pointer;"
+                        onclick="openImageViewer('images/a-level web app.png')">
+                        <img src="images/a-level web app.png" alt="A-Level Motivation Web App Screenshot"
+                            style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <span
+                        style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1rem; display: block;">Full
+                        Stack Development</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 0.5rem;">
+                        A-Level Motivation Web App</h3>
+                    <p
+                        style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;">
+                        Interactive Web Platform &nbsp;·&nbsp; April 2026</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">HTML</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">TAILWIND
+                            CSS</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">JAVASCRIPT</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">FIREBASE</span>
+                    </div>
+
+                    <ul
+                        style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Built an interactive Web App with Firebase Authentication, profiles, and persistent user
+                            data.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Developed mood-based motivation, a shared message board, and a timed mini-game to boost
+                            engagement.
+                        </li>
+                    </ul>
+
+                    <a href="https://motivationalboard.netlify.app/" target="_blank" class="btn btn-dark"
+                        style="font-size: 0.8rem; padding: 1rem 1.8rem;">View Live <i
+                            class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <!-- Gym Calories Predictive Analytics -->
+                <div class="luxe-card" id="project-gym-calories">
+                    <span
+                        style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1rem; display: block;">Data
+                        Science &amp; Analytics</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 0.5rem;">Gym
+                        Calories Predictive Analytics</h3>
+                    <p
+                        style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;">
+                        Predictive Modelling &nbsp;·&nbsp; July – August 2026</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">KNIME</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">SAS
+                            VIYA</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">PREDICTIVE
+                            MODELLING</span>
+                    </div>
+
+                    <ul
+                        style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Cleaned and transformed a 4865-record dataset in KNIME for predictive analysis.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Built and compared Linear Regression, Decision Tree, Random Forest, and Gradient Boosting
+                            Models in SAS Viya using Model Comparison.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Evaluated model performance using validation ASE, selecting Gradient Boosting as the
+                            lowest-error model.
+                        </li>
+                    </ul>
+
+                    <a href="predictive%20analytics%20report.pdf" target="_blank" class="btn btn-dark"
+                        style="font-size: 0.8rem; padding: 1rem 1.8rem;">View Report <i
+                            class="fas fa-file-pdf"></i></a>
+                </div>
+
+                <!-- Customer Data Wrangling & Analytics -->
+                <div class="luxe-card" id="project-customer-data">
+                    <span
+                        style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1rem; display: block;">Data
+                        Engineering</span>
+                    <h3 style="font-size: 1.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 0.5rem;">
+                        Customer Data Wrangling &amp; Analytics</h3>
+                    <p
+                        style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;">
+                        Data Cleaning &amp; Visualisation &nbsp;·&nbsp; July 2026</p>
+
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">KNIME</span>
+                        <span
+                            style="padding: 5px 13px; background: var(--bg-main); border: 1px solid var(--border); border-radius: 100px; font-size: 0.7rem; font-weight: 700;">DATA
+                            CLEANING</span>
+                    </div>
+
+                    <ul
+                        style="list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 2rem;">
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Integrated and cleaned 1506 customer records from 4 regional datasets into a consistent,
+                            analysis-ready dataset for downstream analysis.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Applied validation, feature engineering, and anonymisation, including age &amp; income
+                            grouping, SSN hashing, and name masking.
+                        </li>
+                        <li style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.2rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--accent); font-weight: 800;">→</span>
+                            Produced customer spending insights through grouped analysis and visualisation.
+                        </li>
+                    </ul>
+
+                    <a href="data%20wrangling%20report.pdf" target="_blank" class="btn btn-dark"
+                        style="font-size: 0.8rem; padding: 1rem 1.8rem;">View Report <i
+                            class="fas fa-file-pdf"></i></a>
+                </div>
+
+            </div>
         </section>
     </main>
+
 
     <div class="image-viewer-overlay" id="imageViewer">
         <div class="close-viewer" onclick="closeImageViewer()"><i class="fas fa-times"></i></div>

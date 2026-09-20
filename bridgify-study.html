@@ -6,22 +6,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bridgify Case Study | Kahlen Ong</title>
     <meta name="description"
-        content="Bridgify — a UX case study by Kahlen Ong exploring how technology can strengthen intergenerational engagement programmes in Singapore.">
+        content="Bridgify — a full-stack case study by Kahlen Ong. An event management and booking system built with Flask, SQLite, FullCalendar, Jinja2, and JavaScript.">
     <meta name="keywords"
-        content="Bridgify, case study, UX design, intergenerational, Singapore, Kahlen Ong, AI, community">
+        content="Bridgify, case study, full-stack, event management, Flask, SQLite, Kahlen Ong, Singapore">
     <meta name="author" content="Kahlen Ong">
     <meta property="og:title" content="Bridgify Case Study | Kahlen Ong">
     <meta property="og:description"
-        content="Bridgify — a UX case study exploring how technology can strengthen intergenerational engagement in Singapore.">
+        content="Bridgify — a full-stack case study exploring an event management and booking system for intergenerational engagement in Singapore.">
     <meta property="og:type" content="article">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Bridgify Case Study | Kahlen Ong">
     <meta name="twitter:description"
-        content="Bridgify — a UX case study exploring how technology can strengthen intergenerational engagement in Singapore.">
+        content="Bridgify — a full-stack case study exploring an event management and booking system for intergenerational engagement in Singapore.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Bridgify Study — Page-Specific Styles */
+
+        /* Section Divider */
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 4px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Overview Section */
+        .overview-card {
+            background: var(--bg-dark);
+            border-radius: 32px;
+            padding: 5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .overview-card h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 700px;
+        }
+
+        /* Enhanced Stats */
+        .study-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .study-stat {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: white;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.4s var(--ease);
+            cursor: pointer;
+        }
+
+        .study-stat:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .study-stat-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent), #3b82f6);
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            margin: 0 auto 1.25rem;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .study-stat-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .study-stat-value {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        /* Section Header */
+        .study-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .study-section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .study-section-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Screenshot Image */
+        .study-screenshot {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 6px solid var(--bg-soft);
+            cursor: pointer;
+            transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+        }
+
+        .study-screenshot:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 60px 120px rgba(0, 0, 0, 0.15), 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .study-screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .study-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .overview-card {
+                padding: 3rem 2rem;
+                border-radius: 24px;
+            }
+
+            .overview-card h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .study-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .study-stat {
+                padding: 2rem 1rem;
+            }
+
+            .overview-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .study-screenshot {
+                border-radius: 16px;
+                border-width: 4px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -66,39 +241,58 @@
             </div>
 
             <!-- Project Quick Stats -->
-            <div class="stats-row reveal">
-                <div class="stat-item" onclick="scrollToCard('journey-problem')">
-                    <div class="stat-icon"><i class="fas fa-users"></i></div>
-                    <div class="stat-label">Client</div>
-                    <div class="stat-value">Bridgify<br>Platform</div>
+            <div class="study-stats reveal" style="margin-bottom: 4rem;">
+                <div class="study-stat" onclick="scrollToCard('journey-problem')">
+                    <div class="study-stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="study-stat-label">Client</div>
+                    <div class="study-stat-value">Bridgify<br>Platform</div>
                 </div>
-                <div class="stat-item" onclick="scrollToCard('journey-role')">
-                    <div class="stat-icon"><i class="fas fa-user-tie"></i></div>
-                    <div class="stat-label">Role</div>
-                    <div class="stat-value">Full-Stack<br>Developer</div>
+                <div class="study-stat" onclick="scrollToCard('journey-role')">
+                    <div class="study-stat-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="study-stat-label">Role</div>
+                    <div class="study-stat-value">Full-Stack<br>Developer</div>
                 </div>
-                <div class="stat-item" onclick="scrollToCard('journey-solution')">
-                    <div class="stat-icon"><i class="fas fa-bullseye"></i></div>
-                    <div class="stat-label">Focus</div>
-                    <div class="stat-value">Event &<br>Booking System</div>
+                <div class="study-stat" onclick="scrollToCard('journey-solution')">
+                    <div class="study-stat-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="study-stat-label">Focus</div>
+                    <div class="study-stat-value">Event &amp;<br>Booking System</div>
                 </div>
-                <div class="stat-item" onclick="scrollToCard('journey-process')">
-                    <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
-                    <div class="stat-label">My Scope</div>
-                    <div class="stat-value">Event &<br>Booking Module</div>
+                <div class="study-stat" onclick="scrollToCard('journey-process')">
+                    <div class="study-stat-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="study-stat-label">My Scope</div>
+                    <div class="study-stat-value">Event &amp;<br>Booking Module</div>
                 </div>
+            </div>
+
+            <!-- Screenshot -->
+            <div class="study-screenshot" onclick="openImageViewer('images/bridgify.png')">
+                <img src="images/bridgify.png" alt="Bridgify Platform Screenshot">
+            </div>
+        </section>
+
+        <!-- Platform Overview -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div class="overview-card">
+                <span
+                    style="font-weight: 800; color: rgba(255,255,255,0.4); letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1.5rem; display: block;">Platform
+                    Overview</span>
+                <h2>Bridging Generations,<br>Building Community.</h2>
+                <p>Bridgify is a sophisticated intergenerational engagement platform architected to proactively
+                    combat social isolation among Singapore's ageing population. By leveraging advanced data-driven
+                    algorithms for precise mentorship matching, the ecosystem fosters meaningful, cross-generational
+                    connections that rebuild community resilience and empower individuals through shared knowledge
+                    and mutual support.</p>
             </div>
         </section>
 
         <!-- Video Demo -->
         <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 3rem;">
-                <h2 style="font-size: 2.2rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -1px;">Full
-                    Platform Walkthrough</h2>
-                <p style="font-size: 1.1rem; color: var(--text-muted);">A cinematic demo showcasing the modules and
-                    user workflows I engineered.</p>
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Full Platform Walkthrough</h2>
+                <p>A cinematic demo showcasing the modules and user workflows I engineered.</p>
             </div>
-            <div style="margin-bottom: 5rem;">
+            <div style="margin-bottom: 2rem;">
                 <div class="video-player" id="videoPlayer">
                     <video id="demoVideo" style="width: 100%; height: 100%; object-fit: cover; display: block;">
                         <source src="videos/bridgifydemo.mp4" type="video/mp4">
@@ -129,11 +323,10 @@
 
         <!-- Tech Stack -->
         <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1rem;">
-                    Technology Stack</h2>
-                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">Click any
-                    technology to see how I used it in this project.</p>
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Technology Stack</h2>
+                <p>Click any technology to see how I used it in this project.</p>
             </div>
 
             <div class="tech-grid">
@@ -200,264 +393,402 @@
             </div>
         </section>
 
-        <!-- Project Journey Cards -->
+        <!-- Tech Stack & Skills -->
+        <style>
+            .toolkit-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                gap: 1rem;
+            }
+            .toolkit-card {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+                padding: 1.25rem;
+                background: white;
+                border-radius: 16px;
+                border: 1px solid var(--border);
+                transition: all 0.3s var(--ease);
+                cursor: default;
+            }
+            .toolkit-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+                border-color: rgba(37, 99, 235, 0.4);
+            }
+            .toolkit-icon {
+                width: 42px;
+                height: 42px;
+                border-radius: 12px;
+                background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.02));
+                color: var(--accent);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1rem;
+                flex-shrink: 0;
+            }
+            .toolkit-card span {
+                font-size: 0.95rem;
+                font-weight: 700;
+                color: var(--text-main);
+                line-height: 1.3;
+            }
+        </style>
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto; padding-bottom: 6rem;">
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Technical Toolkit</h2>
+                <p>A comprehensive overview of the skills and responsibilities I handled during this project.</p>
+            </div>
+            
+            <div style="background: var(--bg-soft); padding: 4rem; border-radius: 32px; border: 1px solid var(--border); display: grid; grid-template-columns: 1fr 1.5fr; gap: 4rem;">
+                <!-- Left Column: Responsibilities -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="width: 8px; height: 24px; background: var(--accent); border-radius: 4px;"></div>
+                        <h4 style="font-weight: 900; font-size: 1.4rem; color: var(--text-main); margin: 0;">My Responsibilities</h4>
+                    </div>
+                    
+                    <div class="toolkit-grid">
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-server"></i></div>
+                            <span>Backend Architecture</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-palette"></i></div>
+                            <span>Frontend Development</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-database"></i></div>
+                            <span>Database Design</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-cogs"></i></div>
+                            <span>System Design</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-shield-alt"></i></div>
+                            <span>Admin Logic</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-check-double"></i></div>
+                            <span>Form Validation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Skills -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem;">
+                        <div style="width: 8px; height: 24px; background: #8b5cf6; border-radius: 4px;"></div>
+                        <h4 style="font-weight: 900; font-size: 1.4rem; color: var(--text-main); margin: 0;">Key Technical Skills</h4>
+                    </div>
+                    
+                    <div class="toolkit-grid">
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-layer-group"></i></div>
+                            <span>Full-Stack Development</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-table"></i></div>
+                            <span>Relational Database</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-shield-alt"></i></div>
+                            <span>Server-Side Validation</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-exchange-alt"></i></div>
+                            <span>CRUD Implementation</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-user-lock"></i></div>
+                            <span>Role-Based Access</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-project-diagram"></i></div>
+                            <span>Workflow Architecture</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-code"></i></div>
+                            <span>Dynamic Templating</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-link"></i></div>
+                            <span>Data Consistency</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-window-restore"></i></div>
+                            <span>Modal UI Design</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon" style="color: #8b5cf6; background: rgba(139, 92, 246, 0.1);"><i class="fas fa-route"></i></div>
+                            <span>RESTful Routing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Journey — Always Visible Phases -->
         <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1rem;">
-                    Project Journey</h2>
-                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;">Click each
-                    phase to explore the full depth of my contribution.</p>
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Project Journey</h2>
+                <p>A structured walkthrough of my contribution across each phase.</p>
             </div>
 
-            <!-- Expandable Cards -->
-            <div class="journey-cards">
+            <div style="display: flex; flex-direction: column; gap: 2rem;">
 
-                <!-- Card 1: The Problem -->
-                <div class="journey-card" id="journey-problem" onclick="toggleCard(this)">
-                    <div class="journey-card-header">
-                        <div class="journey-card-number">01</div>
-                        <div class="journey-card-info">
-                            <h3>The Problem</h3>
-                            <p>Client's challenge and project scope</p>
-                        </div>
-                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="journey-card-body">
-                        <div class="journey-card-content">
-                            <p>Intergenerational engagement programmes in Singapore are often short-term, manually
-                                coordinated, and difficult to sustain. Many activities between youths and seniors
-                                rely on one-off workshops or informal arrangements, resulting in limited
-                                continuity and minimal measurable impact.</p>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-exclamation-triangle"></i> Core Challenge</h5>
-                                    <p>No structured system for event coordination—manual tracking led to
-                                        double-bookings, missed registrations, and lost community suggestions.</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-crosshairs"></i> Project Scope</h5>
-                                    <p>Build a complete Event & Booking Management System with admin moderation,
-                                        user registration, and a community-driven suggestion pipeline.</p>
-                                </div>
+                <!-- Phase 1: The Problem -->
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 3rem; background: var(--bg-soft); border-radius: 24px; border-left: 4px solid var(--accent); align-items: start;">
+                    <div
+                        style="width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent), #3b82f6); border-radius: 20px; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; font-weight: 900; flex-shrink: 0;">
+                        01</div>
+                    <div>
+                        <h3
+                            style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.5px;">
+                            The Problem</h3>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+                            Intergenerational engagement programmes in Singapore are often short-term, manually
+                            coordinated, and difficult to sustain. Many activities between youths and seniors
+                            rely on one-off workshops or informal arrangements, resulting in limited
+                            continuity and minimal measurable impact.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-exclamation-triangle" style="color: var(--accent);"></i> Core
+                                    Challenge</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">No
+                                    structured system for event coordination—manual tracking led to double-bookings,
+                                    missed registrations, and lost community suggestions.</p>
+                            </div>
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-crosshairs" style="color: var(--accent);"></i> Project Scope</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Build a
+                                    complete Event &amp; Booking Management System with admin moderation, user
+                                    registration,
+                                    and a community-driven suggestion pipeline.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 2: My Role -->
-                <div class="journey-card" id="journey-role" onclick="toggleCard(this)">
-                    <div class="journey-card-header">
-                        <div class="journey-card-number">02</div>
-                        <div class="journey-card-info">
-                            <h3>My Role</h3>
-                            <p>Responsibilities and involvement</p>
-                        </div>
-                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="journey-card-body">
-                        <div class="journey-card-content">
-                            <p>As one of the <strong>full-stack developers</strong> on Bridgify, I was assigned
-                                ownership of the
-                                <strong>Event & Booking Management System</strong> — the platform's most critical
-                                module. I handled the full feature lifecycle for this module, from database schema
-                                design to frontend interactivity.
-                            </p>
-                            <div class="role-tags">
-                                <span class="role-tag"><i class="fas fa-server"></i> Backend Architecture</span>
-                                <span class="role-tag"><i class="fas fa-palette"></i> Frontend Development</span>
-                                <span class="role-tag"><i class="fas fa-database"></i> Database Design</span>
-                                <span class="role-tag"><i class="fas fa-cogs"></i> System Design</span>
-                                <span class="role-tag"><i class="fas fa-shield-alt"></i> Admin Logic</span>
-                                <span class="role-tag"><i class="fas fa-check-double"></i> Form Validation</span>
+                <!-- Phase 2: My Role -->
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 3rem; background: var(--bg-soft); border-radius: 24px; border-left: 4px solid #7c3aed; align-items: start;">
+                    <div
+                        style="width: 70px; height: 70px; background: linear-gradient(135deg, #7c3aed, #6d28d9); border-radius: 20px; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; font-weight: 900; flex-shrink: 0;">
+                        02</div>
+                    <div>
+                        <h3
+                            style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.5px;">
+                            My Role</h3>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+                            As one of the <strong style="color: var(--text-main);">full-stack developers</strong> on
+                            Bridgify, I was assigned ownership of the
+                            <strong style="color: var(--text-main);">Event &amp; Booking Management System</strong> —
+                            the
+                            platform's most critical module. I handled the full feature lifecycle, from database schema
+                            design to frontend interactivity.
+                        </p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-code" style="color: #7c3aed;"></i> Backend</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Designed
+                                    Flask routes for event CRUD, booking management, suggestion submissions, and admin
+                                    approval workflows.</p>
                             </div>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-code"></i> Backend (Python & Flask)</h5>
-                                    <p>Designed Flask routes for event CRUD, booking management, suggestion submissions,
-                                        and admin approval workflows. Each route follows clean request handling: receive
-                                        form data → validate input → execute SQL → commit changes → redirect.</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-laptop-code"></i> Frontend (HTML, CSS, JS, Jinja)</h5>
-                                    <p>Built modal-based UI for event creation, suggestions, and admin review. Used
-                                        Jinja templating for dynamic data rendering and JavaScript for smooth
-                                        interactions without full page reloads.</p>
-                                </div>
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-laptop-code" style="color: #7c3aed;"></i> Frontend</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Built
+                                    modal-based UI for event creation, suggestions, and admin review with Jinja
+                                    templating and JavaScript interactions.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 3: Solution & Thinking -->
-                <div class="journey-card" id="journey-solution" onclick="toggleCard(this)">
-                    <div class="journey-card-header">
-                        <div class="journey-card-number">03</div>
-                        <div class="journey-card-info">
-                            <h3>Solution Design</h3>
-                            <p>Thinking process and architecture decisions</p>
-                        </div>
-                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="journey-card-body">
-                        <div class="journey-card-content">
-                            <p>I designed an end-to-end workflow that transforms community suggestions into published
-                                events through a structured moderation pipeline.</p>
+                <!-- Phase 3: Solution Design -->
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 3rem; background: var(--bg-soft); border-radius: 24px; border-left: 4px solid #059669; align-items: start;">
+                    <div
+                        style="width: 70px; height: 70px; background: linear-gradient(135deg, #059669, #047857); border-radius: 20px; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; font-weight: 900; flex-shrink: 0;">
+                        03</div>
+                    <div>
+                        <h3
+                            style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.5px;">
+                            Solution Design</h3>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+                            I designed an end-to-end workflow that transforms community suggestions into published
+                            events through a structured moderation pipeline.</p>
 
-                            <div class="workflow-timeline">
-                                <div class="workflow-step">
-                                    <div class="workflow-dot"></div>
-                                    <div class="workflow-content">
-                                        <h5>User Submits Suggestion</h5>
-                                        <p>Community members propose event ideas through a modal form. Submission is
-                                            stored with "Pending" status.</p>
-                                    </div>
-                                </div>
-                                <div class="workflow-step">
-                                    <div class="workflow-dot"></div>
-                                    <div class="workflow-content">
-                                        <h5>Admin Reviews in Dashboard</h5>
-                                        <p>Administrators access a dedicated suggestions panel to review, approve, or
-                                            reject proposals.</p>
-                                    </div>
-                                </div>
-                                <div class="workflow-step">
-                                    <div class="workflow-dot"></div>
-                                    <div class="workflow-content">
-                                        <h5>Auto-Fill Event Creation</h5>
-                                        <p>Upon approval, the title and description auto-populate the event creation
-                                            form via hidden input fields and Jinja template variables.</p>
-                                    </div>
-                                </div>
-                                <div class="workflow-step">
-                                    <div class="workflow-dot"></div>
-                                    <div class="workflow-content">
-                                        <h5>Event Published to Calendar</h5>
-                                        <p>Admin sets date, time, and location. Event commits to the database and
-                                            appears on the user calendar immediately.</p>
-                                    </div>
+                        <div class="workflow-timeline" style="margin-bottom: 2rem;">
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>User Submits Suggestion</h5>
+                                    <p>Community members propose event ideas through a modal form. Submission is stored
+                                        with "Pending" status.</p>
                                 </div>
                             </div>
-
-                            <div class="detail-grid" style="margin-top: 2rem;">
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-database"></i> Database Architecture</h5>
-                                    <p>Implemented a relational SQLite database with separate tables for <strong>Events,
-                                            Bookings, and Suggestions</strong>. Each table was structured with
-                                        appropriate
-                                        fields and relationships to maintain data consistency across the pipeline.</p>
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>Admin Reviews in Dashboard</h5>
+                                    <p>Administrators access a dedicated suggestions panel to review, approve, or reject
+                                        proposals.</p>
                                 </div>
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-shield-alt"></i> Validation & Integrity</h5>
-                                    <p>Built server-side form validation to prevent partial or invalid submissions.
-                                        Implemented date/time constraints so past events cannot be created, and end
-                                        times must follow start times.</p>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>Auto-Fill Event Creation</h5>
+                                    <p>Upon approval, the title and description auto-populate the event creation form via
+                                        hidden input fields and Jinja template variables.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>Event Published to Calendar</h5>
+                                    <p>Admin sets date, time, and location. Event commits to the database and appears on
+                                        the user calendar immediately.</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Card 4: Work Process -->
-                <div class="journey-card" id="journey-process" onclick="toggleCard(this)">
-                    <div class="journey-card-header">
-                        <div class="journey-card-number">04</div>
-                        <div class="journey-card-info">
-                            <h3>Work Process</h3>
-                            <p>Execution, challenges, and problem-solving</p>
-                        </div>
-                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="journey-card-body">
-                        <div class="journey-card-content">
-                            <p>Building a production-style system required iterative development, debugging, and
-                                adapting to unexpected constraints.</p>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-route"></i> Development Approach</h5>
-                                    <p>I followed an iterative process: build core CRUD first, then layer on the
-                                        suggestion workflow, admin panel, and validation logic. Each feature was
-                                        tested independently before integration.</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-bug"></i> Challenges Encountered</h5>
-                                    <p>Database migration issues when restructuring tables, modal state management
-                                        across multiple forms, and ensuring real-time updates reflected correctly
-                                        across all view states without full page reloads.</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-tools"></i> Problem-Solving</h5>
-                                    <p>Implemented a custom DatabaseHelper class to abstract SQL operations,
-                                        designed a robust status-tracking system for suggestions, and built
-                                        cascading UI updates to ensure frontend-backend synchronisation.</p>
-                                </div>
-                                <div class="detail-item">
-                                    <h5><i class="fas fa-check-circle"></i> Quality Assurance</h5>
-                                    <p>Rigorous form validation including date constraints, slot availability checks,
-                                        and input sanitisation. Admin actions are access-controlled with password
-                                        authentication.</p>
-                                </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-database" style="color: #059669;"></i> Database Architecture
+                                </h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Implemented a
+                                    relational SQLite database with separate tables for Events, Bookings, and
+                                    Suggestions with appropriate fields and relationships.</p>
+                            </div>
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-shield-alt" style="color: #059669;"></i> Validation &amp;
+                                    Integrity</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Built
+                                    server-side form validation to prevent invalid submissions. Implemented date/time
+                                    constraints so past events cannot be created.</p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Card 5: Outcomes -->
-                <div class="journey-card" id="journey-outcomes" onclick="toggleCard(this)">
-                    <div class="journey-card-header">
-                        <div class="journey-card-number">05</div>
-                        <div class="journey-card-info">
-                            <h3>Outcomes & Impact</h3>
-                            <p>Results achieved and skills demonstrated</p>
-                        </div>
-                        <div class="journey-card-toggle"><i class="fas fa-plus"></i></div>
-                    </div>
-                    <div class="journey-card-body">
-                        <div class="journey-card-content">
-                            <p>My implementation of the Event & Booking module transformed event coordination from a
-                                manual process into a
-                                structured digital system.</p>
-
-                            <div class="impact-grid">
-                                <div class="impact-item">
-                                    <div class="impact-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                    <h5>Reduced Admin Workload</h5>
-                                    <p>Automated event creation from community suggestions, eliminating manual data
-                                        entry.</p>
-                                </div>
-                                <div class="impact-item">
-                                    <div class="impact-icon"><i class="fas fa-expand-arrows-alt"></i></div>
-                                    <h5>Scalable Architecture</h5>
-                                    <p>Modular codebase enables easy addition of new features without restructuring.
-                                    </p>
-                                </div>
-                                <div class="impact-item">
-                                    <div class="impact-icon"><i class="fas fa-heart"></i></div>
-                                    <h5>Community Participation</h5>
-                                    <p>Suggestion pipeline empowers users to shape their own programme offerings.</p>
-                                </div>
-                                <div class="impact-item">
-                                    <div class="impact-icon"><i class="fas fa-chart-line"></i></div>
-                                    <h5>Measurable Engagement</h5>
-                                    <p>Admin dashboard provides real-time visibility into bookings and event
-                                        analytics.</p>
-                                </div>
+                <!-- Phase 4: Work Process -->
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 3rem; background: var(--bg-soft); border-radius: 24px; border-left: 4px solid #d97706; align-items: start;">
+                    <div
+                        style="width: 70px; height: 70px; background: linear-gradient(135deg, #d97706, #b45309); border-radius: 20px; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; font-weight: 900; flex-shrink: 0;">
+                        04</div>
+                    <div>
+                        <h3
+                            style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.5px;">
+                            Work Process</h3>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+                            Building a production-style system required iterative development, debugging, and adapting to
+                            unexpected constraints.</p>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-route" style="color: #d97706;"></i> Development Approach</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Iterative
+                                    process: build core CRUD first, then layer on the suggestion workflow, admin panel,
+                                    and validation logic.</p>
                             </div>
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-bug" style="color: #d97706;"></i> Challenges</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Database
+                                    migration issues, modal state management across multiple forms, and real-time update
+                                    synchronisation.</p>
+                            </div>
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-tools" style="color: #d97706;"></i> Problem-Solving</h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Custom
+                                    DatabaseHelper class for SQL abstraction, robust status-tracking for suggestions, and
+                                    cascading UI updates.</p>
+                            </div>
+                            <div
+                                style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5
+                                    style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-check-circle" style="color: #d97706;"></i> Quality Assurance
+                                </h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Rigorous form
+                                    validation, slot availability checks, input sanitisation, and password-protected
+                                    admin access.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                            <div style="margin-top: 3rem;">
-                                <h5 style="font-weight: 800; margin-bottom: 1.5rem; font-size: 1.1rem;">Key Technical
-                                    Skills Demonstrated</h5>
-                                <div class="skills-showcase">
-                                    <span>Full-Stack Development</span>
-                                    <span>Relational Database Design</span>
-                                    <span>Server-Side Validation</span>
-                                    <span>CRUD Implementation</span>
-                                    <span>Role-Based Access Control</span>
-                                    <span>Workflow Architecture</span>
-                                    <span>Dynamic Templating</span>
-                                    <span>Data Consistency</span>
-                                    <span>Modal UI Design</span>
-                                    <span>RESTful Routing</span>
-                                </div>
+                <!-- Phase 5: Outcomes -->
+                <div
+                    style="display: grid; grid-template-columns: 80px 1fr; gap: 2.5rem; padding: 3rem; background: var(--bg-soft); border-radius: 24px; border-left: 4px solid #dc2626; align-items: start;">
+                    <div
+                        style="width: 70px; height: 70px; background: linear-gradient(135deg, #dc2626, #b91c1c); border-radius: 20px; display: flex; justify-content: center; align-items: center; color: white; font-size: 1.6rem; font-weight: 900; flex-shrink: 0;">
+                        05</div>
+                    <div>
+                        <h3
+                            style="font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; letter-spacing: -0.5px;">
+                            Outcomes &amp; Impact</h3>
+                        <p style="color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;">
+                            My implementation transformed event coordination from a manual process into a structured
+                            digital system.</p>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-tachometer-alt" style="color: #dc2626;"></i> Reduced Workload
+                                </h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Automated event creation directly from community suggestions eliminated manual data entry and prevented human errors like double-booking.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-expand-arrows-alt" style="color: #dc2626;"></i> Scalable Architecture
+                                </h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Designed with a modular codebase and clean relational database schemas, allowing new features to be integrated easily as the platform scales.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-heart" style="color: #dc2626;"></i> Community Driven
+                                </h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">The dedicated suggestion pipeline empowers members to actively propose, vote on, and shape their own intergenerational programmes.</p>
+                            </div>
+                            <div style="padding: 1.5rem; background: white; border-radius: 16px; border: 1px solid var(--border);">
+                                <h5 style="font-size: 1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                                    <i class="fas fa-chart-line" style="color: #dc2626;"></i> Measurable Impact
+                                </h5>
+                                <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6;">Admin dashboards provide real-time visibility into booking statuses and event analytics, turning scattered events into measurable data.</p>
                             </div>
                         </div>
                     </div>
@@ -466,88 +797,6 @@
             </div>
         </section>
 
-        <!-- Key Features Developed (original cards) -->
-        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
-            <div style="text-align: center; margin-bottom: 4rem;">
-                <h2 style="font-size: 2.5rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 1.5rem;">Core
-                    Modules Delivered</h2>
-                <p
-                    style="font-size: 1.15rem; color: var(--text-muted); max-width: 800px; margin: 0 auto; line-height: 1.8;">
-                    Each module was engineered for reliability, scalability, and seamless user experience.
-                </p>
-            </div>
-
-            <div class="card-grid" style="grid-template-columns: repeat(2, 1fr); gap: 2.5rem;">
-                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                    <div
-                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                        <i class="fas fa-calendar-alt"></i>
-                    </div>
-                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Event Management</h4>
-                    <ul
-                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Full CRUD
-                            functionality via Admin Panel</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                            Calendar-based display with status highlights</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Real-time
-                            updates across all view states</li>
-                    </ul>
-                </div>
-
-                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                    <div
-                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                        <i class="fas fa-book-open"></i>
-                    </div>
-                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Booking System</h4>
-                    <ul
-                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Event
-                            browsing and seamless registration</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Rigid
-                            form validation for data reliability</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                            Withdrawal logic with automated status updates</li>
-                    </ul>
-                </div>
-
-                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                    <div
-                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Suggestion Workflow</h4>
-                    <ul
-                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                            Modal-based community idea submission</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Admin
-                            review & conversion to official events</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Automated
-                            integration into events database</li>
-                    </ul>
-                </div>
-
-                <div class="luxe-card" style="padding: 3rem; background: var(--bg-soft);">
-                    <div
-                        style="width: 50px; height: 50px; background: var(--accent); color: white; border-radius: 12px; display: flex; justify-content: center; align-items: center; margin-bottom: 2rem; font-size: 1.25rem;">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h4 style="font-size: 1.4rem; margin-bottom: 1.5rem; font-weight: 800;">Admin Infrastructure
-                    </h4>
-                    <ul
-                        style="list-style: none; padding: 0; color: var(--text-muted); font-size: 0.95rem; display: flex; flex-direction: column; gap: 0.8rem;">
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i>
-                            High-security password-protected access</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Dynamic
-                            engagement monitoring dashboard</li>
-                        <li><i class="fas fa-check" style="color: var(--accent); margin-right: 10px;"></i> Instant UI
-                            reflection of backend state changes</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
 
         <!-- Call to Action -->
         <section class="section reveal" style="max-width: 1300px; margin: 0 auto; padding-bottom: 6rem;">
@@ -561,7 +810,14 @@
                     Dialogue</a>
             </div>
         </section>
+
     </main>
+
+    <!-- Image Viewer -->
+    <div class="image-viewer-overlay" id="imageViewer">
+        <div class="close-viewer" onclick="closeImageViewer()"><i class="fas fa-times"></i></div>
+        <img src="" class="image-viewer-content" id="viewerImg">
+    </div>
 
     <footer>
         <p>&copy; 2026 KAHLEN ONG. ALL RIGHTS RESERVED.</p>
