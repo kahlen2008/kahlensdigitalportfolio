@@ -59,10 +59,16 @@
                             <i class="fab fa-linkedin-in" style="font-size: 1.2rem; color: var(--accent);"></i>
                             Connect on LinkedIn
                         </a>
-                        <a href="kahlen's resume.pdf" download class="btn btn-outline" style="width: 100%;">
-                            <i class="fas fa-file-download" style="font-size: 1.2rem; color: var(--accent);"></i>
-                            Download My Resume (PDF)
-                        </a>
+                        <div style="display: flex; gap: 1rem; width: 100%;">
+                            <a href="javascript:void(0)" onclick="document.getElementById('resumeModal').classList.add('active'); document.body.style.overflow='hidden';" class="btn btn-outline" style="flex: 1; justify-content: center;">
+                                <i class="fas fa-eye" style="font-size: 1.2rem; color: var(--accent);"></i>
+                                View Resume
+                            </a>
+                            <a href="kahlen's%20resume.pdf" download class="btn btn-outline" style="flex: 1; justify-content: center;">
+                                <i class="fas fa-file-download" style="font-size: 1.2rem; color: var(--accent);"></i>
+                                Download My Resume (PDF)
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -105,6 +111,16 @@
                 intent shortly.</p>
             <button class="btn btn-dark" style="width: 100%; border-radius: 12px; height: 60px;"
                 onclick="closeModal()">CLOSE</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="resumeModal" style="padding: 2rem;">
+        <div class="modal-content" style="max-width: 1000px; width: 100%; height: 90vh; padding: 1rem; display: flex; flex-direction: column;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding: 0 0.5rem;">
+                <h3 style="font-size: 1.5rem; font-weight: 800; margin: 0;">Kahlen Ong - Resume</h3>
+                <button onclick="document.getElementById('resumeModal').classList.remove('active'); document.body.style.overflow='auto';" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main);"><i class="fas fa-times"></i></button>
+            </div>
+            <iframe src="kahlen's%20resume.pdf" style="width: 100%; flex-grow: 1; border: none; border-radius: 8px;"></iframe>
         </div>
     </div>
 
