@@ -326,69 +326,114 @@
             <div class="study-section-header">
                 <div class="section-divider"></div>
                 <h2>Technology Stack</h2>
-                <p>Click any technology to see how I used it in this project.</p>
+                <p>How I utilised each core technology to engineer the Bridgify platform.</p>
             </div>
 
-            <div class="tech-grid">
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="Python"
-                    data-detail="Used as the primary backend language for all server-side logic. Wrote route handlers, database queries, form validation, and business logic including the approval pipeline, booking management, and secure admin authentication workflows.">
-                    <i class="fab fa-python"></i>
-                    <span>Python</span>
-                    <small>Backend Logic</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="Flask"
-                    data-detail="Flask served as the web framework powering all HTTP routing, request handling, and template rendering. I designed RESTful routes for event CRUD, booking submissions, and admin workflows with clean separation of concerns.">
-                    <i class="fas fa-pepper-hot"></i>
-                    <span>Flask</span>
-                    <small>Web Framework</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="SQLite"
-                    data-detail="Implemented as the relational database with separate tables for Events, Bookings, and Suggestions. Designed the schema with appropriate fields, relationships, and constraints to ensure data integrity across the full pipeline.">
-                    <i class="fas fa-database"></i>
-                    <span>SQLite</span>
-                    <small>Database</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="SQL"
-                    data-detail="Wrote raw SQL queries for full CRUD operations: INSERT for creating events and bookings, SELECT with JOINs for calendar display, UPDATE for status changes and approvals, and DELETE for event removal and booking withdrawals.">
-                    <i class="fas fa-code"></i>
-                    <span>SQL</span>
-                    <small>Data Queries</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="HTML5"
-                    data-detail="Built semantic page structures for the calendar view, booking forms, admin dashboard, and suggestion panels. Used proper form elements with validation attributes for accessible, standards-compliant, and well-structured markup throughout the application.">
-                    <i class="fab fa-html5"></i>
-                    <span>HTML5</span>
-                    <small>Structure</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="CSS3"
-                    data-detail="Designed a cohesive visual system with responsive layouts, modal animations, status-based colour coding for events, hover effects, and mobile-first media queries to deliver a polished and professional user interface.">
-                    <i class="fab fa-css3-alt"></i>
-                    <span>CSS3</span>
-                    <small>Styling</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="JavaScript"
-                    data-detail="Implemented client-side interactivity: modal open/close logic, form validation with real-time error feedback, dynamic calendar rendering, date/time constraint enforcement, and admin panel interactions—all without requiring full page reloads.">
-                    <i class="fab fa-js-square"></i>
-                    <span>JavaScript</span>
-                    <small>Interactivity</small>
-                </div>
-                <div class="tech-item" onclick="showTechDetail(this)" data-tech="Jinja2"
-                    data-detail="Used Flask's Jinja2 engine to dynamically render database content into HTML templates. Implemented loops for event listings, conditionals for role-based UI, and template inheritance for consistent page layouts. Injected approved suggestion data into event creation forms via template variables.">
-                    <i class="fas fa-file-code"></i>
-                    <span>Jinja2</span>
-                    <small>Templating</small>
-                </div>
-            </div>
-
-            <!-- Tech Detail Panel -->
-            <div class="tech-detail-panel" id="techDetailPanel">
-                <div class="tech-detail-inner">
-                    <div class="tech-detail-header">
-                        <h4 id="techDetailTitle">Python</h4>
-                        <button class="tech-detail-close" onclick="closeTechDetail(event)"><i
-                                class="fas fa-times"></i></button>
+            <style>
+                .tech-detail-grid {
+                    display: flex;
+                    flex-wrap: wrap;
+                    justify-content: center;
+                    gap: 1.5rem;
+                }
+                .tech-detail-card {
+                    flex: 0 1 calc(33.333% - 1rem);
+                    min-width: 280px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    padding: 1.5rem;
+                    background: white;
+                    border-radius: 16px;
+                    border: 1px solid var(--border);
+                    transition: all 0.3s var(--ease);
+                }
+                .tech-detail-card:hover {
+                    transform: translateY(-4px);
+                    box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+                    border-color: rgba(37, 99, 235, 0.4);
+                }
+            </style>
+            <div class="tech-detail-grid">
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fab fa-python"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">Python</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Backend Logic</div>
+                        </div>
                     </div>
-                    <p id="techDetailText">Details here</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Used as the primary backend language for all server-side logic. Wrote route handlers, database queries, form validation, and business logic including the approval pipeline, booking management, and secure admin authentication workflows.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fas fa-pepper-hot"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">Flask</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Web Framework</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Served as the web framework powering all HTTP routing, request handling, and template rendering. I designed RESTful routes for event CRUD, booking submissions, and admin workflows with clean separation of concerns.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fas fa-database"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">SQLite</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Database</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Implemented as the relational database with separate tables for Events, Bookings, and Suggestions. Designed the schema with appropriate fields, relationships, and constraints to ensure data integrity across the full pipeline.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fas fa-code"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">SQL</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Data Queries</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Wrote raw SQL queries for full CRUD operations: INSERT for creating events and bookings, SELECT with JOINs for calendar display, UPDATE for status changes and approvals, and DELETE for event removal and booking withdrawals.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fab fa-html5"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">HTML5</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Structure</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Built semantic page structures for the calendar view, booking forms, admin dashboard, and suggestion panels. Used proper form elements with validation attributes for accessible, well-structured markup throughout the application.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fab fa-css3-alt"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">CSS3</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Styling</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Designed a cohesive visual system with responsive layouts, modal animations, status-based colour coding for events, hover effects, and mobile-first media queries to deliver a polished and professional user interface.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fab fa-js-square"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">JavaScript</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Interactivity</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Implemented client-side interactivity: modal open/close logic, form validation with real-time error feedback, dynamic calendar rendering, date/time constraint enforcement, and admin panel interactions.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 1rem;">
+                        <div class="toolkit-icon"><i class="fas fa-file-code"></i></div>
+                        <div>
+                            <span style="font-size: 1rem; font-weight: 700; color: var(--text-main);">Jinja2</span>
+                            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Templating</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin: 0;">Used Flask's Jinja2 engine to dynamically render database content into HTML templates. Implemented loops for event listings, conditionals for role-based UI, and injected approved suggestion data into forms.</p>
                 </div>
             </div>
         </section>
