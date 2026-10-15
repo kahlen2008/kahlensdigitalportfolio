@@ -1,0 +1,482 @@
+/*
+   HOME PAGE — "Mouth Portal" scroll intro
+   Only loaded by index.html, so other pages are unaffected.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap');
+
+/* Lenis smooth-scroll compatibility (style.css sets scroll-behavior: smooth) */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+body.home {
+    --portal-bg: #2563eb;
+    --portal-black: #0a0a0a;
+    --skin: #ffd5bd;
+    --hair: #141414;
+    background: var(--portal-black);
+    color: #fff;
+}
+
+/* ---------- Navigation (transparent over the intro) ---------- */
+body.home .nav-bar,
+body.home .nav-bar.scrolled {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom: none;
+    box-shadow: none;
+}
+
+body.home .logo {
+    color: #fff;
+}
+
+body.home .logo span {
+    color: #facc15;
+}
+
+body.home .nav-links a {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.home .nav-links a:hover,
+body.home .nav-links a.active {
+    color: #fff;
+}
+
+body.home .nav-toggle span {
+    background: #fff;
+}
+
+@media (max-width: 768px) {
+    body.home .nav-links {
+        background: var(--portal-black);
+    }
+}
+
+/* ---------- Pinned intro ---------- */
+.mouth-intro {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.intro-stage {
+    position: absolute;
+    inset: 0;
+    background: var(--portal-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* subtle blueprint grid for an IT feel */
+.intro-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+    pointer-events: none;
+}
+
+.face-wrap {
+    position: relative;
+    z-index: 2;
+    width: min(400px, 72vw, calc(64vh * 0.8696));
+    aspect-ratio: 400 / 460;
+    will-change: transform;
+}
+
+.face-wrap svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Floating code tags (Solid Developer Stickers) */
+.float-tag {
+    position: absolute;
+    z-index: 3;
+    will-change: transform;
+}
+
+.float-tag--1 { top: 20%; left: 14%; }
+.float-tag--2 { top: 16%; right: 15%; }
+.float-tag--3 { top: 52%; left: 8%; }
+.float-tag--4 { top: 48%; right: 9%; }
+.float-tag--5 { bottom: 20%; left: 20%; }
+.float-tag--6 { bottom: 24%; right: 19%; }
+
+/* The Sticker Chip */
+.tag-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 0.95rem;
+    background: #ffffff;
+    color: #0a0a0a;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: clamp(0.72rem, 0.92vw, 0.88rem);
+    font-weight: 600;
+    border: 2px solid #0a0a0a;
+    border-radius: 12px;
+    box-shadow: 3.5px 3.5px 0px #0a0a0a;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease;
+}
+
+/* Individual organic sticker tilts with gentle bobbing */
+.float-tag--1 .tag-chip {
+    transform: rotate(-3.5deg);
+    animation: tagBob1 4.5s ease-in-out infinite;
+}
+.float-tag--2 .tag-chip {
+    transform: rotate(2.5deg);
+    animation: tagBob2 5.2s ease-in-out infinite 0.6s;
+}
+.float-tag--3 .tag-chip {
+    transform: rotate(2deg);
+    animation: tagBob1 4.8s ease-in-out infinite 1.2s;
+}
+.float-tag--4 .tag-chip {
+    transform: rotate(-2.5deg);
+    animation: tagBob2 5.5s ease-in-out infinite 0.3s;
+}
+.float-tag--5 .tag-chip {
+    transform: rotate(-3deg);
+    animation: tagBob1 5s ease-in-out infinite 1.8s;
+}
+.float-tag--6 .tag-chip {
+    transform: rotate(3deg);
+    animation: tagBob2 4.6s ease-in-out infinite 0.9s;
+}
+
+/* Hover state: pops straight up with deeper shadow */
+.tag-chip:hover {
+    transform: translateY(-4px) scale(1.06) rotate(0deg) !important;
+    box-shadow: 5px 5px 0px #0a0a0a;
+}
+
+/* Subtle bobbing animation */
+@keyframes tagBob1 {
+    0%, 100% { transform: translateY(0) rotate(-3.5deg); }
+    50% { transform: translateY(-6px) rotate(-1.5deg); }
+}
+
+@keyframes tagBob2 {
+    0%, 100% { transform: translateY(0) rotate(2.5deg); }
+    50% { transform: translateY(-7px) rotate(4deg); }
+}
+
+/* Category Badge inside the sticker */
+.tag-badge {
+    background: #0a0a0a;
+    color: #ffffff;
+    font-size: 0.62rem;
+    font-weight: 800;
+    letter-spacing: 0.75px;
+    padding: 2px 6px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+/* Semantic syntax styling */
+.tag-text .kw {
+    color: #1d4ed8;
+    font-weight: 700;
+}
+.tag-text .str {
+    color: #047857;
+    font-weight: 600;
+}
+.tag-text .fn {
+    color: #6d28d9;
+    font-weight: 700;
+}
+.tag-text .cm {
+    color: #64748b;
+    font-size: 0.85em;
+    font-style: italic;
+}
+
+/* Corner labels */
+.intro-corner {
+    position: absolute;
+    z-index: 3;
+    bottom: 2.5rem;
+    color: #fff;
+}
+
+.intro-corner--left {
+    left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.intro-corner--right {
+    right: 5%;
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    font-size: clamp(1.6rem, 3vw, 2.6rem);
+    line-height: 1;
+}
+
+.scroll-mouse {
+    width: 22px;
+    height: 34px;
+    border: 2px solid #fff;
+    border-radius: 12px;
+    position: relative;
+}
+
+.scroll-mouse::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 6px;
+    width: 4px;
+    height: 7px;
+    margin-left: -2px;
+    border-radius: 2px;
+    background: #fff;
+    animation: scrollWheel 1.6s infinite var(--ease);
+}
+
+@keyframes scrollWheel {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(12px); opacity: 0; }
+}
+
+/* ---------- Black screen revealed from the mouth ---------- */
+.reveal-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: var(--portal-black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(2.5rem, 7vh, 5rem);
+    padding: 90px 5% 40px;
+    text-align: center;
+}
+
+.reveal-inner {
+    max-width: 960px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reveal-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.95rem;
+    color: #00ff66;
+    letter-spacing: 2px;
+    margin-bottom: 1.25rem;
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.55), 0 0 24px rgba(0, 255, 102, 0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reveal-kicker .cursor {
+    display: inline-block;
+    width: 0.55em;
+    height: 1.05em;
+    margin-left: 4px;
+    vertical-align: -0.15em;
+    background: #00ff66;
+    box-shadow: 0 0 10px rgba(0, 255, 102, 0.8);
+    animation: blinkCursor 0.9s steps(1) infinite;
+}
+
+@keyframes blinkCursor {
+    50% { opacity: 0; }
+}
+
+.reveal-title {
+    font-size: clamp(2.6rem, 7.5vw, 6.5rem);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.75rem;
+    color: #fff;
+}
+
+.reveal-title span {
+    color: #facc15;
+}
+
+.reveal-desc {
+    font-size: clamp(1.05rem, 1.9vw, 1.55rem);
+    font-weight: 600;
+    line-height: 1.45;
+    color: #fff;
+    max-width: 780px;
+    margin-bottom: 2.5rem;
+}
+
+.kw-pink { color: #f9a8d4; }
+.kw-blue { color: #7dd3fc; }
+.kw-yellow { color: #fde68a; }
+.kw-red { color: #f87171; }
+
+.reveal-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-light {
+    background: #fff;
+    color: var(--portal-black) !important;
+    border: 1px solid #fff;
+}
+
+.btn-light:hover {
+    transform: translateY(-4px);
+    background: #facc15;
+    border-color: #facc15;
+    box-shadow: 0 15px 40px rgba(250, 204, 21, 0.25);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-ghost:hover {
+    transform: translateY(-4px);
+    border-color: #7dd3fc;
+    color: #7dd3fc !important;
+}
+
+/* Tech-stack marquee */
+.marquee {
+    width: 100%;
+    max-width: 1100px;
+    overflow: hidden;
+    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marqueeScroll 28s linear infinite;
+}
+
+.marquee:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+.marquee-group {
+    display: flex;
+    align-items: center;
+    gap: 3.5rem;
+    padding-right: 3.5rem;
+}
+
+.marquee-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    white-space: nowrap;
+    transition: color 0.3s ease;
+}
+
+.marquee-item i {
+    font-size: 1.5rem;
+}
+
+.marquee-logo {
+    width: 1.6rem;
+    height: 1.6rem;
+    object-fit: contain;
+}
+
+.marquee-item:hover {
+    color: #fff;
+}
+
+@keyframes marqueeScroll {
+    to { transform: translateX(-50%); }
+}
+
+/* ---------- Footer on the dark home page ---------- */
+body.home footer {
+    background: var(--portal-black);
+    color: rgba(255, 255, 255, 0.5);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+body.home footer a:hover {
+    color: #fff !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 768px) {
+    .float-tag--3,
+    .float-tag--4 {
+        display: none;
+    }
+
+    .float-tag--1 { top: 16%; left: 6%; }
+    .float-tag--2 { top: 13%; right: 6%; }
+    .float-tag--5 { bottom: 17%; left: 6%; }
+    .float-tag--6 { bottom: 13%; right: 6%; }
+
+    .intro-corner--left span {
+        display: none;
+    }
+
+    .marquee-group {
+        gap: 2.25rem;
+        padding-right: 2.25rem;
+    }
+}
+
+/* ---------- Reduced motion: skip the portal, show content ---------- */
+body.home.reduced-motion .intro-stage {
+    display: none;
+}
+
+body.home.reduced-motion .reveal-screen {
+    position: relative;
+    min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .marquee-track,
+    .scroll-mouse::after,
+    .reveal-kicker .cursor {
+        animation: none;
+    }
+}
