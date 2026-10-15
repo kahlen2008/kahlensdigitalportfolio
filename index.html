@@ -20,12 +20,13 @@
         content="Explore the portfolio of Kahlen Ong — Applied AI & Analytics student specialising in data-driven solutions and human-centric design.">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=dark">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
     <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
 </head>
 
-<body>
+<body class="home">
     <nav class="nav-bar" id="nav">
         <a href="index.html" class="logo">Kahlen<span>.</span></a>
         <button class="nav-toggle" id="navToggle">
@@ -44,27 +45,170 @@
     </nav>
 
     <main style="position: relative; z-index: 1;">
-        <header class="hero">
-            <div class="hero-content reveal" style="text-align: center;">
-                <span class="hero-sub">Applied AI & Analytics</span>
-                <h1 class="hero-name">HI, I'M<br>KAHLEN ONG<span>.</span></h1>
-                <p class="hero-desc" style="margin-left: auto; margin-right: auto;">Pioneering the intersection of
-                    data-driven intelligence and high-end digital
-                    architecture. I focus on engineering systems that do more than process data—they create meaningful
-                    narratives.</p>
-                <div style="display: flex; gap: 1.5rem; justify-content: center;">
-                    <a href="about.html" class="btn btn-dark">View My Journey <i class="fas fa-arrow-right"></i></a>
-                    <a href="projects.html" class="btn btn-outline">View My Projects <i
-                            class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-            <div class="hero-image reveal">
-                <div class="hero-image-inner">
-                    <img src="images/photo.jpg" alt="Kahlen Ong Professional Portrait">
-                </div>
-            </div>
-        </header>
+        <section class="mouth-intro" id="mouthIntro">
 
+            <!-- Stage: illustrated avatar on blue -->
+            <div class="intro-stage" id="introStage">
+                <div class="intro-grid"></div>
+
+                <div class="float-tag float-tag--1" data-depth="30">
+                    <div class="tag-chip">
+                        <span class="tag-badge">DEV</span>
+                        <span class="tag-text">&lt;/&gt;</span>
+                    </div>
+                </div>
+                <div class="float-tag float-tag--2" data-depth="-40">
+                    <div class="tag-chip">
+                        <span class="tag-badge">AI</span>
+                        <span class="tag-text"><span class="fn">model.fit</span>(X, y)</span>
+                    </div>
+                </div>
+                <div class="float-tag float-tag--3" data-depth="50">
+                    <div class="tag-chip">
+                        <span class="tag-badge">PY</span>
+                        <span class="tag-text">print(<span class="str">"hello world"</span>)</span>
+                    </div>
+                </div>
+                <div class="float-tag float-tag--4" data-depth="-25">
+                    <div class="tag-chip">
+                        <span class="tag-badge">SQL</span>
+                        <span class="tag-text"><span class="kw">SELECT</span> * <span class="kw">FROM</span> ideas</span>
+                    </div>
+                </div>
+                <div class="float-tag float-tag--5" data-depth="-50">
+                    <div class="tag-chip">
+                        <span class="tag-badge">DATA</span>
+                        <span class="tag-text"><span class="kw">import</span> pandas <span class="kw">as</span> pd</span>
+                    </div>
+                </div>
+                <div class="float-tag float-tag--6" data-depth="35">
+                    <div class="tag-chip">
+                        <span class="tag-badge">BIN</span>
+                        <span class="tag-text">01001011 <span class="cm">/* 'K' */</span></span>
+                    </div>
+                </div>
+
+                <div class="face-wrap" id="faceWrap">
+                    <svg viewBox="0 0 400 460" role="img" aria-label="Illustrated avatar of Kahlen Ong">
+                        <!-- hair bun (tied back) -->
+                        <circle cx="200" cy="84" r="34" fill="#141414" />
+                        <rect x="176" y="108" width="48" height="9" rx="4.5" fill="#facc15" />
+                        <!-- back hair -->
+                        <ellipse cx="200" cy="200" rx="116" ry="110" fill="#141414" />
+                        <!-- neck + shirt -->
+                        <rect x="174" y="320" width="52" height="70" rx="10" fill="#f1bea2" />
+                        <path d="M30,460 C40,400 110,372 200,372 C290,372 360,400 370,460 Z" fill="#1c1c1c" />
+                        <path d="M152,377 Q200,422 248,377" fill="none" stroke="#efe6d6" stroke-width="12"
+                            stroke-linecap="round" />
+                        <!-- ears -->
+                        <circle cx="95" cy="252" r="20" fill="#ffd5bd" />
+                        <circle cx="305" cy="252" r="20" fill="#ffd5bd" />
+                        <path d="M98,242 Q88,252 98,262" fill="none" stroke="#eeac8e" stroke-width="3"
+                            stroke-linecap="round" />
+                        <path d="M302,242 Q312,252 302,262" fill="none" stroke="#eeac8e" stroke-width="3"
+                            stroke-linecap="round" />
+                        <!-- face -->
+                        <ellipse id="face" cx="200" cy="240" rx="106" ry="118" fill="#ffd5bd" />
+                        <!-- front hair with bangs -->
+                        <path fill="#141414"
+                            d="M94,238 C86,150 132,98 200,98 C268,98 314,150 306,238 C300,214 294,198 284,190 L274,200 L266,184 L254,200 L244,182 L230,198 L220,180 L206,196 L196,178 L184,196 L172,180 L160,198 L148,184 L136,198 L126,190 C110,198 100,214 94,238 Z" />
+                        <path d="M150,126 Q185,108 228,114" fill="none" stroke="rgba(255,255,255,0.18)"
+                            stroke-width="5" stroke-linecap="round" />
+                        <!-- loose side strands -->
+                        <path d="M104,226 Q94,290 110,346" fill="none" stroke="#141414" stroke-width="4"
+                            stroke-linecap="round" />
+                        <path d="M296,226 Q306,290 290,346" fill="none" stroke="#141414" stroke-width="4"
+                            stroke-linecap="round" />
+                        <!-- eyes (outer group = scroll, inner = mouse look) -->
+                        <g id="eyesScroll">
+                            <g id="eyesLook">
+                                <g class="eye-g">
+                                    <ellipse cx="160" cy="242" rx="9" ry="10.5" fill="#141414" />
+                                    <circle cx="163" cy="238" r="3" fill="#fff" />
+                                    <path d="M151,236 L144,231" stroke="#141414" stroke-width="3" stroke-linecap="round" />
+                                </g>
+                                <g class="eye-g">
+                                    <ellipse cx="240" cy="242" rx="9" ry="10.5" fill="#141414" />
+                                    <circle cx="243" cy="238" r="3" fill="#fff" />
+                                    <path d="M249,236 L256,231" stroke="#141414" stroke-width="3" stroke-linecap="round" />
+                                </g>
+                            </g>
+                        </g>
+                        <!-- cheeks -->
+                        <g id="cheeks" fill="#ff8fa3" opacity="0.45">
+                            <ellipse cx="140" cy="284" rx="16" ry="9" />
+                            <ellipse cx="260" cy="284" rx="16" ry="9" />
+                        </g>
+                        <!-- nose -->
+                        <path id="nose" d="M195,272 Q200,279 205,272" fill="none" stroke="#e09e80" stroke-width="3"
+                            stroke-linecap="round" />
+                        <!-- mouth: smile, then the portal -->
+                        <path id="smile" d="M180,302 Q200,318 220,302" fill="none" stroke="#8a3b2e" stroke-width="4"
+                            stroke-linecap="round" />
+                        <ellipse id="mouth" cx="200" cy="305" rx="0" ry="0" fill="#0a0a0a" />
+                    </svg>
+                </div>
+
+                <div class="intro-corner intro-corner--left" id="scrollHint">
+                    <div class="scroll-mouse"></div>
+                    <span>Scroll to enter</span>
+                </div>
+                <div class="intro-corner intro-corner--right">Applied AI &amp; Analytics</div>
+            </div>
+
+            <!-- Black screen that appears from inside the mouth -->
+            <div class="reveal-screen" id="revealScreen">
+                <div class="reveal-inner">
+                    <span class="reveal-kicker reveal-item"><span id="typewriterText">&gt; hello_world.py</span><span class="cursor"></span></span>
+                    <h1 class="reveal-title reveal-item">HI, I'M<br>KAHLEN ONG<span>.</span></h1>
+                    <p class="reveal-desc reveal-item">An Applied AI &amp; Analytics student at Nanyang Polytechnic
+                        building systems involving <span class="kw-pink">Machine Learning</span>, <span class="kw-blue">Data
+                            Analytics</span>, <span class="kw-yellow">Predictive Modelling</span> &amp; <span
+                            class="kw-red">Full-Stack Development.</span></p>
+                    <div class="reveal-actions reveal-item">
+                        <a href="about.html" class="btn btn-light" id="btnJourney">View My Journey <i
+                                class="fas fa-arrow-right"></i></a>
+                        <a href="projects.html" class="btn btn-ghost" id="btnProjects">View My Projects <i
+                                class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="marquee reveal-item" aria-label="Tech stack">
+                    <div class="marquee-track">
+                        <div class="marquee-group">
+                            <span class="marquee-item"><i class="fab fa-python" style="color:#ffd43b"></i>Python</span>
+                            <span class="marquee-item"><i class="fas fa-database" style="color:#a78bfa"></i>SQL</span>
+                            <span class="marquee-item"><i class="fas fa-brain" style="color:#f9a8d4"></i>Scikit-learn</span>
+                            <span class="marquee-item"><i class="fab fa-google" style="color:#4285f4"></i>Vertex AI</span>
+                            <span class="marquee-item"><i class="fas fa-fire" style="color:#ffca28"></i>Firebase / Firestore</span>
+                            <span class="marquee-item"><i class="fab fa-react" style="color:#61dafb"></i>React / Next.js</span>
+                            <span class="marquee-item"><i class="fas fa-flask" style="color:#e2e8f0"></i>Flask</span>
+                            <span class="marquee-item"><i class="fab fa-js" style="color:#f7df1e"></i>JavaScript</span>
+                            <span class="marquee-item"><i class="fab fa-html5" style="color:#e34f26"></i>HTML / CSS</span>
+                            <span class="marquee-item"><i class="fas fa-diagram-project" style="color:#fde68a"></i>KNIME</span>
+                            <span class="marquee-item"><i class="fas fa-chart-line" style="color:#34d399"></i>SAS Viya</span>
+                            <span class="marquee-item"><img src="images/logos/powerpoint.svg" alt="" class="marquee-logo">PowerPoint</span>
+                            <span class="marquee-item"><img src="images/logos/canva.svg" alt="" class="marquee-logo">Canva</span>
+                        </div>
+                        <div class="marquee-group" aria-hidden="true">
+                            <span class="marquee-item"><i class="fab fa-python" style="color:#ffd43b"></i>Python</span>
+                            <span class="marquee-item"><i class="fas fa-database" style="color:#a78bfa"></i>SQL</span>
+                            <span class="marquee-item"><i class="fas fa-brain" style="color:#f9a8d4"></i>Scikit-learn</span>
+                            <span class="marquee-item"><i class="fab fa-google" style="color:#4285f4"></i>Vertex AI</span>
+                            <span class="marquee-item"><i class="fas fa-fire" style="color:#ffca28"></i>Firebase / Firestore</span>
+                            <span class="marquee-item"><i class="fab fa-react" style="color:#61dafb"></i>React / Next.js</span>
+                            <span class="marquee-item"><i class="fas fa-flask" style="color:#e2e8f0"></i>Flask</span>
+                            <span class="marquee-item"><i class="fab fa-js" style="color:#f7df1e"></i>JavaScript</span>
+                            <span class="marquee-item"><i class="fab fa-html5" style="color:#e34f26"></i>HTML / CSS</span>
+                            <span class="marquee-item"><i class="fas fa-diagram-project" style="color:#fde68a"></i>KNIME</span>
+                            <span class="marquee-item"><i class="fas fa-chart-line" style="color:#34d399"></i>SAS Viya</span>
+                            <span class="marquee-item"><img src="images/logos/powerpoint.svg" alt="" class="marquee-logo">PowerPoint</span>
+                            <span class="marquee-item"><img src="images/logos/canva.svg" alt="" class="marquee-logo">Canva</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -80,7 +224,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
     <script src="script.js"></script>
+    <script src="home.js"></script>
 </body>
 
 </html>
