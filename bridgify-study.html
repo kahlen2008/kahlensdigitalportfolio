@@ -203,7 +203,7 @@
 <body>
     <nav class="nav-bar" id="nav">
         <a href="index.html" class="logo">Kahlen<span>.</span></a>
-        <button class="nav-toggle" id="navToggle">
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
             <span></span>
             <span></span>
             <span></span>
@@ -307,14 +307,14 @@
 
                     <!-- Custom Controls -->
                     <div class="video-controls" id="videoControls">
-                        <button class="vc-btn" id="vcPlayBtn" onclick="togglePlay()">
+                        <button class="vc-btn" id="vcPlayBtn" onclick="togglePlay()" aria-label="Play video">
                             <i class="fas fa-play"></i>
                         </button>
                         <div class="vc-progress" id="vcProgress" onclick="seekVideo(event)">
                             <div class="vc-progress-filled" id="vcProgressFilled"></div>
                         </div>
                         <span class="vc-time" id="vcTime">0:00 / 0:00</span>
-                        <button class="vc-btn" onclick="toggleFullscreen()">
+                        <button class="vc-btn" onclick="toggleFullscreen()" aria-label="Toggle fullscreen">
                             <i class="fas fa-expand"></i>
                         </button>
                     </div>

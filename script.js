@@ -29,8 +29,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinks = document.querySelector('.nav-links');
 
     if (navToggle) {
+        navToggle.setAttribute('aria-expanded', 'false');
         navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
+            const isActive = navToggle.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', String(isActive));
             navLinks?.classList.toggle('active');
         });
     }
@@ -40,6 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             navToggle?.classList.remove('active');
+            navToggle?.setAttribute('aria-expanded', 'false');
             navLinks?.classList.remove('active');
         });
     });
