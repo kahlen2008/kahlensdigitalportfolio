@@ -25,22 +25,24 @@
 </head>
 
 <body>
-    <nav class="nav-bar" id="nav">
-        <a href="index.html" class="logo">Kahlen<span>.</span></a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html" class="active">Projects</a></li>
-            <li><a href="awards.html">Awards</a></li>
-            <li><a href="life.html">Life</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="nav-bar" id="nav">
+            <a href="index.html" class="logo">Kahlen<span>.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="life.html">Life</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main style="padding-top: 100px; position: relative; z-index: 1;">
         <section class="section reveal">
@@ -299,8 +301,8 @@
 
 
     <div class="image-viewer-overlay" id="imageViewer">
-        <div class="close-viewer" onclick="closeImageViewer()"><i class="fas fa-times"></i></div>
-        <img src="" class="image-viewer-content" id="viewerImg">
+        <div class="close-viewer" onclick="closeImageViewer()" role="button" aria-label="Close image preview" tabindex="0"><i class="fas fa-times"></i></div>
+        <img src="" class="image-viewer-content" id="viewerImg" alt="Enlarged project preview">
     </div>
 
     <footer>

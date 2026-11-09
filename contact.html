@@ -25,22 +25,24 @@
 </head>
 
 <body>
-    <nav class="nav-bar" id="nav">
-        <a href="index.html" class="logo">Kahlen<span>.</span></a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="awards.html">Awards</a></li>
-            <li><a href="life.html">Life</a></li>
-            <li><a href="contact.html" class="active">Contact</a></li>
-        </ul>
-    </nav>
+    <header>
+        <nav class="nav-bar" id="nav">
+            <a href="index.html" class="logo">Kahlen<span>.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="life.html">Life</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main style="padding-top: 100px; position: relative; z-index: 1;">
         <section class="section reveal contact-section" style="position: relative; z-index: 1;">
@@ -77,17 +79,17 @@
                     <form id="contactForm" action="https://formspree.io/f/xvzbzegj" method="POST"
                         style="display: flex; flex-direction: column; gap: 1.5rem;" novalidate>
                         <div class="form-group">
-                            <label>Full Name</label>
+                            <label for="name">Full Name</label>
                             <input type="text" name="name" id="name" placeholder="Your Name" required>
                             <div class="error-message">Please enter your full name.</div>
                         </div>
                         <div class="form-group">
-                            <label>Email Address</label>
+                            <label for="email">Email Address</label>
                             <input type="email" name="email" id="email" placeholder="example@domain.com" required>
                             <div class="error-message">Please enter a valid email address.</div>
                         </div>
                         <div class="form-group">
-                            <label>Message</label>
+                            <label for="message">Message</label>
                             <textarea name="message" id="message" rows="4" placeholder="How can I help you?"
                                 required></textarea>
                             <div class="error-message">Please share a few details about your enquiry.</div>
