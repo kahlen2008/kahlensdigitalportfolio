@@ -315,6 +315,8 @@ h1, h2, h3, h4, h5, h6 {
 .project-card {
     display: flex;
     flex-direction: column;
+    will-change: transform, opacity;
+    transform-origin: center center;
 }
 
 /* Expert Card Styles */

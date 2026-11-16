@@ -4,6 +4,7 @@
  * - ProjectCard component (title, description, tech stack, GitHub link, demo link)
  * - ProjectList component (renders array of 3+ ProjectCards)
  * - FilterBar component (filters cards by technology)
+ * - Smooth FLIP animation (First, Last, Invert, Play) on filter clicks
  */
 
 // 1. Projects Data Array (5 real projects)
@@ -101,6 +102,7 @@ function ProjectCard(project) {
     const card = document.createElement('div');
     card.className = 'luxe-card project-card';
     card.id = `project-${project.id}`;
+    card.dataset.id = project.id;
 
     // Optional image screenshot with lightbox
     const imageHtml = project.image ? `
@@ -207,16 +209,6 @@ function ProjectList(projects, container) {
     if (!container) return;
     container.innerHTML = '';
 
-    if (projects.length === 0) {
-        container.innerHTML = `
-            <div style="grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: var(--bg-soft); border-radius: 20px; border: 1px dashed var(--border);">
-                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;">No projects found with the selected technology.</p>
-                <button class="filter-btn active" onclick="filterProjects('All')" style="margin: 0 auto;">Show All Projects</button>
-            </div>
-        `;
-        return;
-    }
-
     projects.forEach(project => {
         const cardElement = ProjectCard(project);
         container.appendChild(cardElement);
@@ -226,6 +218,7 @@ function ProjectList(projects, container) {
 // 4. FilterBar Component
 // Renders technology filter pills and handles active state
 let currentFilter = 'All';
+let isAnimating = false;
 
 function FilterBar(technologies, activeTech, onFilterChange, container) {
     if (!container) return;
@@ -256,20 +249,131 @@ function FilterBar(technologies, activeTech, onFilterChange, container) {
     });
 }
 
-// Global filter handler
+/**
+ * Smooth FLIP Animation Filter Handler
+ * First: Record bounding boxes of currently visible cards
+ * Last: Apply filter to update DOM layout
+ * Invert: Calculate transform offsets (dx, dy)
+ * Play: Animate cards smoothly into their new positions
+ */
 window.filterProjects = function(tech) {
+    if (tech === currentFilter || isAnimating) return;
     currentFilter = tech;
+    isAnimating = true;
+
     const projectListContainer = document.getElementById('projectList');
     const filterBarContainer = document.getElementById('filterBar');
+    if (!projectListContainer) return;
 
-    const filtered = (tech === 'All')
-        ? projectsData
-        : projectsData.filter(p =>
-            p.techStack.some(t => t.toLowerCase() === tech.toLowerCase())
-        );
+    const cards = Array.from(projectListContainer.querySelectorAll('.project-card'));
 
-    // Re-render ProjectList
-    ProjectList(filtered, projectListContainer);
+    // [F] FIRST: Record initial positions of all visible cards
+    const firstRects = new Map();
+    cards.forEach(card => {
+        if (card.style.display !== 'none') {
+            firstRects.set(card.dataset.id, card.getBoundingClientRect());
+        }
+    });
+
+    // Determine matching project IDs
+    const matchingIds = new Set(
+        (tech === 'All'
+            ? projectsData
+            : projectsData.filter(p => p.techStack.some(t => t.toLowerCase() === tech.toLowerCase()))
+        ).map(p => p.id)
+    );
+
+    // [L] LAST: Apply DOM updates
+    cards.forEach(card => {
+        const isMatch = matchingIds.has(card.dataset.id);
+        if (isMatch) {
+            card.style.display = '';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+
+    // Handle Empty State if no project matches
+    let emptyState = document.getElementById('projectEmptyState');
+    if (matchingIds.size === 0) {
+        if (!emptyState) {
+            emptyState = document.createElement('div');
+            emptyState.id = 'projectEmptyState';
+            emptyState.style.cssText = 'grid-column: 1 / -1; text-align: center; padding: 4rem 2rem; background: var(--bg-soft); border-radius: 20px; border: 1px dashed var(--border);';
+            emptyState.innerHTML = `
+                <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1rem;">No projects found with the selected technology.</p>
+                <button class="filter-btn active" onclick="filterProjects('All')" style="margin: 0 auto;">Show All Projects</button>
+            `;
+            projectListContainer.appendChild(emptyState);
+        }
+        emptyState.style.display = '';
+    } else if (emptyState) {
+        emptyState.style.display = 'none';
+    }
+
+    // [I] INVERT: Calculate position deltas and invert with transforms
+    const visibleCards = cards.filter(card => matchingIds.has(card.dataset.id));
+
+    visibleCards.forEach(card => {
+        const lastRect = card.getBoundingClientRect();
+        const firstRect = firstRects.get(card.dataset.id);
+
+        if (firstRect) {
+            // Card was already visible -> invert position difference
+            const dx = firstRect.left - lastRect.left;
+            const dy = firstRect.top - lastRect.top;
+
+            card.style.transition = 'none';
+            card.style.transform = `translate(${dx}px, ${dy}px)`;
+            card.style.opacity = '1';
+        } else {
+            // Card is entering -> start slightly scaled down with opacity 0
+            card.style.transition = 'none';
+            card.style.transform = 'scale(0.92) translateY(20px)';
+            card.style.opacity = '0';
+        }
+    });
+
+    // Force browser reflow to register inverted positions before animating
+    projectListContainer.offsetHeight;
+
+    // [P] PLAY: Animate smoothly to natural grid layout
+    requestAnimationFrame(() => {
+        let completedCount = 0;
+        const totalCards = visibleCards.length;
+
+        if (totalCards === 0) {
+            isAnimating = false;
+        }
+
+        visibleCards.forEach((card, index) => {
+            const isEntering = !firstRects.has(card.dataset.id);
+            const delay = isEntering ? (index * 0.04) : 0;
+
+            card.style.transition = `transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s, opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${delay}s`;
+            card.style.transform = '';
+            card.style.opacity = '1';
+
+            const onTransitionEnd = (e) => {
+                if (e.propertyName === 'transform' || e.propertyName === 'opacity') {
+                    card.style.transition = '';
+                    card.removeEventListener('transitionend', onTransitionEnd);
+                    completedCount++;
+                    if (completedCount >= totalCards) {
+                        isAnimating = false;
+                    }
+                }
+            };
+
+            card.addEventListener('transitionend', onTransitionEnd);
+        });
+
+        // Fallback safety timeout in case transitionend is skipped
+        setTimeout(() => {
+            visibleCards.forEach(card => { card.style.transition = ''; });
+            isAnimating = false;
+        }, 550);
+    });
 
     // Re-render FilterBar active state
     FilterBar(primaryTechnologies, currentFilter, window.filterProjects, filterBarContainer);
