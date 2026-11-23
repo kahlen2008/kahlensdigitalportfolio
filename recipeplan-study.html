@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipePlan Case Study | Kahlen Ong</title>
+    <meta name="description"
+        content="RecipePlan — a case study by Kahlen Ong on leading the team that built a recipe finder and weekly meal planner with Firebase, JavaScript and TheMealDB.">
+    <meta name="keywords" content="RecipePlan, case study, Firebase, JavaScript, Tailwind CSS, TheMealDB, Gachon University, Kahlen Ong">
+    <meta name="author" content="Kahlen Ong">
+    <meta property="og:title" content="RecipePlan Case Study | Kahlen Ong">
+    <meta property="og:description"
+        content="RecipePlan — a recipe finder and weekly meal planner with diet and allergy warnings.">
+    <meta property="og:type" content="article">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css?v=dark">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Same building blocks as the other case studies */
+        .section-divider {
+            width: 60px;
+            height: 4px;
+            background: var(--accent-gradient);
+            border-radius: 4px;
+            margin: 0 auto 2rem;
+        }
+
+        .overview-card {
+            background: var(--bg-dark);
+            border-radius: 32px;
+            padding: 5rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .overview-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .overview-card h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .overview-card p {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.75);
+            max-width: 700px;
+            text-wrap: pretty;
+        }
+
+        .study-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .study-stat {
+            text-align: center;
+            padding: 2.5rem 1.5rem;
+            background: var(--bg-soft);
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            transition: all 0.4s var(--ease);
+        }
+
+        .study-stat:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(37, 99, 235, 0.1);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .study-stat-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent), #3b82f6);
+            color: white;
+            border-radius: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            margin: 0 auto 1.25rem;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+        }
+
+        .study-stat-label {
+            font-size: 0.7rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .study-stat-value {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+
+        .study-section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .study-section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+
+        .study-section-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            text-wrap: balance;
+        }
+
+        .study-screenshot {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.12), 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 6px solid var(--bg-soft);
+            transition: transform 0.6s var(--ease), box-shadow 0.6s var(--ease);
+        }
+
+        .study-screenshot:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 60px 120px rgba(0, 0, 0, 0.15), 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .study-screenshot img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Technology stack */
+        .tech-detail-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .tech-detail-card {
+            flex: 0 1 calc(33.333% - 1rem);
+            min-width: 280px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 1.5rem;
+            background: var(--bg-soft);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s var(--ease);
+        }
+
+        .tech-detail-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+
+        .tech-detail-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 1rem;
+        }
+
+        .tech-detail-head strong {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .tech-detail-head small {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        .tech-detail-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        /* Toolkit */
+        .toolkit-panel {
+            background: var(--bg-soft);
+            padding: 2.5rem;
+            border-radius: 32px;
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 2.5rem;
+        }
+
+        .toolkit-heading {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .toolkit-heading i {
+            width: 8px;
+            height: 24px;
+            background: var(--accent);
+            border-radius: 4px;
+        }
+
+        .toolkit-heading h4 {
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--text-main);
+            margin: 0;
+        }
+
+        .toolkit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .toolkit-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 0.85rem 1rem;
+            background: var(--bg-soft);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            transition: all 0.3s var(--ease);
+        }
+
+        .toolkit-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.08);
+            border-color: rgba(37, 99, 235, 0.4);
+        }
+
+        .toolkit-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(37, 99, 235, 0.02));
+            color: var(--accent);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .toolkit-icon--violet {
+            color: #8b5cf6;
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .toolkit-card span {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+
+        /* Project journey */
+        .journey {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .journey-step {
+            --tone: var(--accent);
+            --tone-2: #3b82f6;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2.5rem;
+            padding: 3rem;
+            background: var(--bg-soft);
+            border-radius: 24px;
+            border-left: 4px solid var(--tone);
+            align-items: start;
+        }
+
+        .journey-step--violet { --tone: #7c3aed; --tone-2: #6d28d9; }
+        .journey-step--green { --tone: #059669; --tone-2: #047857; }
+        .journey-step--pink { --tone: #db2777; --tone-2: #be185d; }
+        .journey-step--amber { --tone: #d97706; --tone-2: #b45309; }
+        .journey-step--red { --tone: #dc2626; --tone-2: #b91c1c; }
+
+        .journey-point b {
+            color: var(--text-main);
+            font-weight: 700;
+        }
+
+        .journey-step .workflow-content p {
+            color: var(--text-muted);
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        .study-cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--border);
+            border-radius: 40px;
+            color: var(--text-main);
+        }
+
+        .study-cta h3 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        .study-cta p {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .journey-num {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--tone), var(--tone-2));
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 1.6rem;
+            font-weight: 900;
+        }
+
+        .journey-step h3 {
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .journey-step > div > p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            text-wrap: pretty;
+        }
+
+        .journey-points {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .journey-point {
+            padding: 1.5rem;
+            background: var(--bg-soft);
+            border-radius: 16px;
+            border: 1px solid var(--border);
+        }
+
+        .journey-point h5 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .journey-point h5 i {
+            color: var(--tone);
+        }
+
+        .journey-point p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+            text-wrap: pretty;
+        }
+
+        @media (max-width: 968px) {
+            .study-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .overview-card {
+                padding: 3rem 2rem;
+                border-radius: 24px;
+            }
+
+            .overview-card h2 {
+                font-size: 2rem;
+            }
+
+            .toolkit-panel {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .study-stats {
+                gap: 1rem;
+            }
+
+            .study-stat {
+                padding: 2rem 1rem;
+            }
+
+            .overview-card {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .study-screenshot {
+                border-radius: 16px;
+                border-width: 4px;
+            }
+
+            .study-hero h1 {
+                font-size: 3.2rem !important;
+                letter-spacing: -2px !important;
+            }
+
+            .tech-detail-card {
+                flex-basis: 100%;
+                min-width: 0;
+            }
+
+            .toolkit-panel {
+                padding: 1.5rem;
+                border-radius: 24px;
+            }
+
+            .journey-step {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                padding: 1.75rem 1.25rem;
+            }
+
+            .journey-num {
+                width: 54px;
+                height: 54px;
+                font-size: 1.25rem;
+                border-radius: 16px;
+            }
+
+            .journey-points {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .study-cta {
+                padding: 3.5rem 1.5rem;
+                border-radius: 24px;
+            }
+
+            .study-cta h3 {
+                font-size: 1.9rem;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/jpeg" href="images/favicon.jpg">
+</head>
+
+<body>
+    <header>
+        <nav class="nav-bar" id="nav">
+            <a href="index.html" class="logo">Kahlen<span>.</span></a>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="awards.html">Awards</a></li>
+                <li><a href="life.html">Life</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding-top: 90px; position: relative; z-index: 1;">
+
+        <!-- Back Link + Hero -->
+        <section class="section reveal study-hero" style="max-width: 1300px; margin: 0 auto;">
+            <a href="projects.html"
+                style="text-decoration: none; color: var(--accent); font-weight: 700; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 2rem; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+
+            <div style="text-align: center; margin-bottom: 3rem;">
+                <span
+                    style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 1.5rem; display: block;">Full
+                    Stack Web App Case Study</span>
+                <h1
+                    style="font-size: 5rem; font-weight: 900; letter-spacing: -4px; line-height: 0.9; margin-bottom: 2rem; text-transform: uppercase;">
+                    RecipePlan</h1>
+                <p
+                    style="font-size: 1.25rem; color: var(--text-main); max-width: 700px; margin: 0 auto; line-height: 1.6; text-wrap: balance;">
+                    As the team lead and one of the full-stack developers on this project, I was tasked with
+                    building the Accounts &amp; Preferences Module — the part of the platform that keeps every
+                    recipe safe for each user's diet and allergies.
+                </p>
+            </div>
+
+            <!-- Project Quick Stats -->
+            <div class="study-stats reveal" style="margin-bottom: 4rem;">
+                <div class="study-stat">
+                    <div class="study-stat-icon"><i class="fas fa-utensils"></i></div>
+                    <div class="study-stat-label">Project</div>
+                    <div class="study-stat-value">RecipePlan<br>Platform</div>
+                </div>
+                <div class="study-stat">
+                    <div class="study-stat-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="study-stat-label">Role</div>
+                    <div class="study-stat-value">Team Lead &amp;<br>Full-Stack Developer</div>
+                </div>
+                <div class="study-stat">
+                    <div class="study-stat-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="study-stat-label">Focus</div>
+                    <div class="study-stat-value">Diet &amp;<br>Allergy Safety</div>
+                </div>
+                <div class="study-stat">
+                    <div class="study-stat-icon"><i class="fas fa-layer-group"></i></div>
+                    <div class="study-stat-label">My Scope</div>
+                    <div class="study-stat-value">Accounts &amp;<br>Preferences Module</div>
+                </div>
+            </div>
+
+            <!-- Screenshot -->
+            <div class="study-screenshot">
+                <img src="images/recipeplan.png" alt="RecipePlan home page with recipe search and feature cards">
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.5rem;">
+                <a href="https://kahlen2008.github.io/webprogproject/" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-dark" style="font-size: 0.8rem; padding: 1rem 1.8rem;">
+                    View Live <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://github.com/kahlen2008/webprogproject" target="_blank" rel="noopener noreferrer"
+                    class="btn btn-outline" style="font-size: 0.8rem; padding: 1rem 1.8rem;">
+                    GitHub <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </section>
+
+        <!-- Platform Overview -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div class="overview-card">
+                <span
+                    style="font-weight: 800; color: rgba(255,255,255,0.4); letter-spacing: 3px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1.5rem; display: block;">Platform
+                    Overview</span>
+                <h2>Find Recipes. Plan Meals.<br>Cook With Confidence.</h2>
+                <p>RecipePlan brings searching, saving and planning meals into one place. Users set their diet and
+                    allergies once, and every recipe is checked against them. They can save favourites, rate
+                    recipes, plan breakfast, lunch and dinner for the week, and get one combined shopping list. It
+                    all syncs to their account, so it follows them from phone to laptop.</p>
+            </div>
+        </section>
+
+        <!-- Technology Stack -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Technology Stack</h2>
+                <p>Every technology behind RecipePlan and how I used it.</p>
+            </div>
+
+            <div class="tech-detail-grid">
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fab fa-js"></i></div>
+                        <div><strong>JavaScript</strong><small>ES Modules</small></div>
+                    </div>
+                    <p>Plain HTML, CSS and JavaScript with no framework or build step. Each page has its own module, and
+                        I wrote the shared modules for accounts, preferences, languages and data that every other page
+                        imports.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 1.25em; height: 1.25em;"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624C10.337,13.382,8.976,12,6.001,12z" fill="currentColor"/></svg></div>
+                        <div><strong>Tailwind CSS</strong><small>Styling &amp; Tailwind CLI</small></div>
+                    </div>
+                    <p>Kept every page on the same colours, spacing and components. I also set up the Tailwind CLI to
+                        pre-build the stylesheet for the busiest pages, so they no longer wait on the CDN to load.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fas fa-user-shield"></i></div>
+                        <div><strong>Firebase Authentication</strong><small>Email &amp; Google Sign-in</small></div>
+                    </div>
+                    <p>Email and password accounts with an enforced password policy, Google sign-in, password reset
+                        and account deletion, with every Firebase error turned into a plain-English message.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fas fa-database"></i></div>
+                        <div><strong>Cloud Firestore</strong><small>NoSQL Database</small></div>
+                    </div>
+                    <p>Stores each user's profile, favourites, weekly plans, shopping lists and reviews. I designed the
+                        schema and wrote the read and write helpers the rest of the team built their features on.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div><strong>Firestore Security Rules</strong><small>Data Protection</small></div>
+                    </div>
+                    <p>Server-side rules so users can only ever touch their own data, and reviews are rejected unless
+                        they have exactly the right fields, 1 to 5 stars and a comment under 300 characters.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fas fa-utensils"></i></div>
+                        <div><strong>TheMealDB API</strong><small>Recipe Data</small></div>
+                    </div>
+                    <p>The source of every recipe. It has no allergen data, so my checker reads the ingredient names it
+                        returns to work out which recipes clash with a user's diet or allergies.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fas fa-language"></i></div>
+                        <div><strong>Google Translate</strong><small>Language Switcher</small></div>
+                    </div>
+                    <p>Translates the whole site into 130+ languages. Searches typed in other languages are translated
+                        to English before they reach TheMealDB, and cached so repeat searches are instant.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fas fa-hard-drive"></i></div>
+                        <div><strong>Web Storage API</strong><small>Local Caching</small></div>
+                    </div>
+                    <p>A local copy of the account and preferences lets pages draw straight away while Firebase is
+                        still loading, and keeps preferences working even when the connection is slow.</p>
+                </div>
+                <div class="tech-detail-card">
+                    <div class="tech-detail-head">
+                        <div class="toolkit-icon"><i class="fab fa-github"></i></div>
+                        <div><strong>GitHub Actions</strong><small>CI/CD &amp; Hosting</small></div>
+                    </div>
+                    <p>I set up the workflows that deploy the site to GitHub Pages and Firebase Hosting on every merge
+                        to main, plus preview deploys for pull requests.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Toolkit -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto; padding-bottom: 6rem;">
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Technical Toolkit</h2>
+                <p>The responsibilities I owned and the skills I used on this project.</p>
+            </div>
+
+            <div class="toolkit-panel">
+                <div>
+                    <div class="toolkit-heading"><i></i>
+                        <h4>My Responsibilities</h4>
+                    </div>
+                    <div class="toolkit-grid">
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-users-cog"></i></div><span>Team Lead</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-key"></i></div><span>Accounts &amp; Sign-in</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-list-check"></i></div><span>Onboarding &amp; Profile</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-triangle-exclamation"></i></div><span>Diet &amp; Allergy Checker</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-shield-alt"></i></div><span>Security Rules</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon"><i class="fas fa-code-merge"></i></div><span>Integration &amp; Fixes</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="toolkit-heading"><i style="background: #8b5cf6;"></i>
+                        <h4>Key Technical Skills</h4>
+                    </div>
+                    <div class="toolkit-grid">
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-lock"></i></div><span>Authentication</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-table"></i></div><span>NoSQL Data Modelling</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-shield-halved"></i></div><span>Firestore Rules</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-magnifying-glass"></i></div><span>Keyword Matching</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-globe"></i></div><span>Internationalisation</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-plug"></i></div><span>API Design for a Team</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fab fa-git-alt"></i></div><span>Git Branching &amp; PRs</span>
+                        </div>
+                        <div class="toolkit-card">
+                            <div class="toolkit-icon toolkit-icon--violet"><i class="fas fa-mobile-screen"></i></div><span>Responsive UI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Journey -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto;">
+            <div class="study-section-header">
+                <div class="section-divider"></div>
+                <h2>Project Journey</h2>
+                <p>A structured walkthrough of my contribution across each phase.</p>
+            </div>
+
+            <div class="journey">
+
+                <!-- 01 The Problem -->
+                <div class="journey-step">
+                    <div class="journey-num">01</div>
+                    <div>
+                        <h3>The Problem</h3>
+                        <p>Deciding what to cook every day takes more effort than it should. Recipes are scattered
+                            across websites, bookmarks and notes, so people search, compare and then forget what they
+                            found. For anyone with a diet or a food allergy it is worse: every ingredient list has to be
+                            read by hand, and one missed ingredient can make a meal unsafe.</p>
+                        <div class="journey-points">
+                            <div class="journey-point">
+                                <h5><i class="fas fa-triangle-exclamation"></i> Core Challenge</h5>
+                                <p>No single place to find, check and plan meals. Allergy checks were manual, plans and
+                                    shopping lists lived in separate apps, and nothing followed users across
+                                    devices.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-crosshairs"></i> Project Scope</h5>
+                                <p>Build a recipe finder and weekly meal planner with accounts, diet and allergy
+                                    warnings, favourites, ratings and one combined shopping list, all synced to the
+                                    cloud.</p>
+                            </div>
+                        </div>
+                        <div class="journey-point" style="margin-top: 1.5rem;">
+                            <h5><i class="fas fa-earth-asia"></i> Why a Language Switcher?</h5>
+                            <p>I built RecipePlan while on exchange at Gachon University in South Korea, surrounded by
+                                international students from all over the world. Not everyone is comfortable reading
+                                English, so I came up with the idea of a language switcher: anyone can use the site and
+                                search for recipes in their own language, from Korean to Vietnamese to Spanish.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 02 My Role -->
+                <div class="journey-step journey-step--violet">
+                    <div class="journey-num">02</div>
+                    <div>
+                        <h3>My Role</h3>
+                        <p>As team lead and one of the full-stack developers, I owned the Accounts &amp; Preferences
+                            Module: everything about who the user is, what they can eat and keeping their data safe. I
+                            also set up how the team worked together and brought everyone's features into one site.</p>
+                        <div class="journey-points">
+                            <div class="journey-point">
+                                <h5><i class="fas fa-server"></i> Backend</h5>
+                                <p>Firebase Authentication, the Firestore schema and its helper functions, and the
+                                    security rules that protect every user's data.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-palette"></i> Frontend</h5>
+                                <p>Login and sign-up pages, the two-step onboarding, the profile and settings page, and
+                                    the language switcher in the navbar.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-users-cog"></i> Team Lead</h5>
+                                <p>Split the work by feature and file, documented the shared functions everyone called,
+                                    and reviewed and merged work from the dev branch into main.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-rocket"></i> Integration &amp; Deployment</h5>
+                                <p>Set up automatic deploys with GitHub Actions and fixed bugs across features so the
+                                    whole site worked as one product.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 03 Solution Design -->
+                <div class="journey-step journey-step--green">
+                    <div class="journey-num">03</div>
+                    <div>
+                        <h3>Solution Design</h3>
+                        <p>I designed the path a user takes from signing up to seeing only recipes that are safe for
+                            them, so their preferences are set once and then checked everywhere automatically.</p>
+
+                        <div class="workflow-timeline" style="margin-bottom: 2rem;">
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>User Creates an Account</h5>
+                                    <p>Sign up with email or Google. Passwords need 8+ characters, a number and a special
+                                        character, enforced both in the form and by Firebase.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>Two-Step Onboarding</h5>
+                                    <p>Pick from 9 diets, then 9 allergens. Each step saves straight away, so leaving
+                                        halfway never loses progress.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>Every Recipe Is Checked</h5>
+                                    <p>Each recipe's ingredients are matched against the user's diet and allergies on
+                                        search results, favourites, the recipe page and the planner.</p>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="workflow-dot"></div>
+                                <div class="workflow-content">
+                                    <h5>Warn, Hide or Swap</h5>
+                                    <p>Clashing recipes get a warning badge, can be hidden completely, ask for
+                                        confirmation before joining the meal plan, and suggest up to 3 swaps per
+                                        ingredient.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="journey-points">
+                            <div class="journey-point">
+                                <h5><i class="fas fa-database"></i> Data Architecture</h5>
+                                <p>One Firestore document per user, with favourites, weekly meal plans, shopping lists
+                                    and rated recipes stored underneath it, so all of a user's data can be found and
+                                    deleted together.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-magnifying-glass"></i> Checker Design</h5>
+                                <p>Keyword groups for each diet and allergen, each with its own exceptions, so
+                                    ingredients are matched on meaning rather than just on matching words.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 04 Problems I Solved -->
+                <div class="journey-step journey-step--amber">
+                    <div class="journey-num">04</div>
+                    <div>
+                        <h3>Problems I Solved</h3>
+                        <p>Building something people trust with their allergies and their accounts meant finding and
+                            fixing the cases where things could quietly go wrong.</p>
+                        <div class="journey-points">
+                            <div class="journey-point">
+                                <h5><i class="fas fa-egg"></i> False Allergy Warnings</h5>
+                                <p><b>Problem:</b> simple word matching flagged coconut milk as dairy, butter beans as
+                                    butter and eggplant as eggs.<br><b>Fix:</b> added exception phrases to every keyword
+                                    group, so warnings only appear for real matches.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-user-xmark"></i> Half-Deleted Accounts</h5>
+                                <p><b>Problem:</b> Firebase can refuse to delete an account after the data is already
+                                    gone.<br><b>Fix:</b> the app checks the user signed in recently first, then removes
+                                    their reviews, favourites, plans and profile before the account itself.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-link-slash"></i> Unsafe Redirects</h5>
+                                <p><b>Problem:</b> the redirect link after login could be edited to send users to
+                                    another website.<br><b>Fix:</b> a check that only allows pages on RecipePlan's own
+                                    site.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-earth-asia"></i> Searches in Other Languages</h5>
+                                <p><b>Problem:</b> TheMealDB only understands English, so non-English searches found
+                                    nothing.<br><b>Fix:</b> searches are translated to English first, while allergy
+                                    checks always run on the original English ingredients.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-id-card"></i> Missing Profiles</h5>
+                                <p><b>Problem:</b> some new accounts could end up without a
+                                    profile in the database.<br><b>Fix:</b> every login now makes sure the user's profile
+                                    exists before continuing.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-gauge-high"></i> Slow First Load</h5>
+                                <p><b>Problem:</b> the Tailwind CDN and sign-in checks blocked the home page from
+                                    showing.<br><b>Fix:</b> a pre-built stylesheet, compressed images and a delayed
+                                    sign-in check so the page appears first.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 05 Outcomes & Impact -->
+                <div class="journey-step journey-step--red">
+                    <div class="journey-num">05</div>
+                    <div>
+                        <h3>Outcomes &amp; Impact</h3>
+                        <p>My module turned RecipePlan from a recipe search into a personal tool that knows what each
+                            user can eat and keeps their data safe.</p>
+                        <div class="journey-points">
+                            <div class="journey-point">
+                                <h5><i class="fas fa-shield-heart"></i> Safer Browsing</h5>
+                                <p>Users set their diet and allergies once and every recipe is checked for them, with
+                                    clear wording that the warnings are a helper, not a guarantee.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-mobile-screen"></i> One Account Everywhere</h5>
+                                <p>Preferences, favourites and plans sync to the cloud, so they follow users from their
+                                    phone to their laptop.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-globe"></i> Open to More People</h5>
+                                <p>With 130+ languages, international students and anyone else can use the site and
+                                    search for recipes in the language they are most comfortable with.</p>
+                            </div>
+                            <div class="journey-point">
+                                <h5><i class="fas fa-code-merge"></i> Faster Teamwork</h5>
+                                <p>Shared, documented functions let everyone build their features in parallel and
+                                    plug them together without rewriting each other's code.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="section reveal" style="max-width: 1300px; margin: 0 auto; padding-bottom: 6rem;">
+            <div class="study-cta">
+                <h3>Interested in the Tech?</h3>
+                <p>Let's discuss the decisions behind RecipePlan.</p>
+                <a href="contact.html" class="btn btn-dark" style="border-radius: 12px; padding: 1.25rem 3rem;">Start a
+                    Dialogue</a>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 KAHLEN ONG. ALL RIGHTS RESERVED.</p>
+        <div style="display: flex; gap: 2rem;">
+            <a href="https://www.linkedin.com/in/kahlen-ong-8b086838a" target="_blank"
+                style="color: inherit; text-decoration: none; font-weight: 600; letter-spacing: 1px; font-size: 0.85rem; transition: color 0.3s ease;">LINKEDIN</a>
+            <a href="kahlen's resume.pdf" download
+                style="color: inherit; text-decoration: none; font-weight: 600; letter-spacing: 1px; font-size: 0.85rem; transition: color 0.3s ease;">RESUME</a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

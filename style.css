@@ -2016,3 +2016,9 @@ body {
     font-size: 0.8rem;
     margin-top: 0.3em;
 }
+
+/* Projects: avoid single-word last lines in card bullets */
+.project-card li,
+.project-card p {
+    text-wrap: pretty;
+}

@@ -7,24 +7,26 @@
  * - Smooth FLIP animation (First, Last, Invert, Play) on filter clicks
  */
 
-// 1. Projects Data Array (5 real projects)
+// 1. Projects Data Array (6 real projects)
 const projectsData = [
     {
-        id: "bridgify",
-        title: "Bridgify",
-        subtitle: "Event Management & Booking System · October 2025 – February 2026",
+        id: "recipeplan",
+        title: "RecipePlan",
+        subtitle: "Recipe Finder & Meal Planner · October – November 2026",
         category: "Full Stack Development",
-        image: "images/bridgify.png",
-        imageAlt: "Bridgify Platform Screenshot",
-        techStack: ["Flask", "SQLite", "JavaScript", "FullCalendar", "Jinja2"],
+        image: "images/recipeplan.png",
+        imageAlt: "RecipePlan Home Page Screenshot",
+        imagePosition: "top",
+        techStack: ["JavaScript", "Firebase", "Tailwind CSS", "TheMealDB API"],
         description: [
-            "Developed a full-stack event management and booking system with calendar-based browsing, search, and capacity-controlled registration.",
-            "Designed an SQLite relational database and Flask APIs for bookings, withdrawals, and admin CRUD operations.",
-            "Implemented RBAC, validation, and event suggestion workflows, including duplicate-registration and past-event safeguards."
+            "Built sign-up, login and Google sign-in, the two-step diet and allergy onboarding, and the profile page as team lead.",
+            "Implemented diet and allergy warnings that flag or hide clashing recipes, and a language switcher supporting 130+ languages.",
+            "Wrote the Firestore security rules and led integration, merging the team’s work and fixing bugs across features."
         ],
         githubLink: null,
-        demoLink: null,
-        studyLink: "bridgify-study.html"
+        demoLink: "https://kahlen2008.github.io/webprogproject/",
+        demoLabel: "View Live",
+        studyLink: "recipeplan-study.html"
     },
     {
         id: "factoriq",
@@ -45,22 +47,6 @@ const projectsData = [
         studyLink: "factoriq-study.html"
     },
     {
-        id: "motivation-app",
-        title: "A-Level Motivation Web App",
-        subtitle: "Interactive Web Platform · April 2026",
-        category: "Full Stack Development",
-        image: "images/a-level web app.png",
-        imageAlt: "A-Level Motivation Web App Screenshot",
-        techStack: ["HTML", "Tailwind CSS", "JavaScript", "Firebase"],
-        description: [
-            "Built an interactive Web App with Firebase Authentication, profiles, and persistent user data.",
-            "Developed mood-based motivation, a shared message board, and a timed mini-game to boost engagement."
-        ],
-        githubLink: null,
-        demoLink: "https://motivationalboard.netlify.app/",
-        demoLabel: "View Live"
-    },
-    {
         id: "gym-calories",
         title: "Gym Calories Predictive Analytics",
         subtitle: "Predictive Modelling · July – August 2026",
@@ -79,7 +65,7 @@ const projectsData = [
     },
     {
         id: "customer-data",
-        title: "Customer Data Wrangling & Analytics",
+        title: "Data Wrangling Project",
         subtitle: "Data Cleaning & Visualisation · July 2026",
         category: "Data Engineering",
         image: null,
@@ -93,7 +79,40 @@ const projectsData = [
         demoLink: null,
         reportLink: "data%20wrangling%20report.pdf",
         reportLabel: "View Report",
-        highlight: "Contributed to a Distinction for the module (top 5% of cohort)."
+        highlight: "Module Distinction (top 5% of cohort)."
+    },
+    {
+        id: "motivation-app",
+        title: "A-Level Motivation Web App",
+        subtitle: "Interactive Web Platform · April 2026",
+        category: "Full Stack Development",
+        image: "images/a-level web app.png",
+        imageAlt: "A-Level Motivation Web App Screenshot",
+        techStack: ["HTML", "Tailwind CSS", "JavaScript", "Firebase"],
+        description: [
+            "Built an interactive Web App with Firebase Authentication, profiles, and persistent user data.",
+            "Developed mood-based motivation, a shared message board, and a timed mini-game to boost engagement."
+        ],
+        githubLink: null,
+        demoLink: "https://motivationalboard.netlify.app/",
+        demoLabel: "View Live"
+    },
+    {
+        id: "bridgify",
+        title: "Bridgify",
+        subtitle: "Event Management & Booking System · October 2025 – February 2026",
+        category: "Full Stack Development",
+        image: "images/bridgify.png",
+        imageAlt: "Bridgify Platform Screenshot",
+        techStack: ["Flask", "SQLite", "JavaScript", "FullCalendar", "Jinja2"],
+        description: [
+            "Developed a full-stack event management and booking system with calendar-based browsing, search, and capacity-controlled registration.",
+            "Designed an SQLite relational database and Flask APIs for bookings, withdrawals, and admin CRUD operations.",
+            "Implemented RBAC, validation, and event suggestion workflows, including duplicate-registration and past-event safeguards."
+        ],
+        githubLink: null,
+        demoLink: null,
+        studyLink: "bridgify-study.html"
     }
 ];
 
@@ -110,7 +129,7 @@ function ProjectCard(project) {
         <div style="border-radius: 20px; overflow: hidden; height: 220px; margin-bottom: 1.5rem; cursor: pointer;"
              onclick="openImageViewer('${project.image}')" role="button" aria-label="View enlarged ${project.title} screenshot" tabindex="0">
             <img src="${project.image}" alt="${project.imageAlt || project.title + ' Screenshot'}"
-                 style="width: 100%; height: 100%; object-fit: cover;">
+                 style="width: 100%; height: 100%; object-fit: cover; object-position: ${project.imagePosition || 'center'};">
         </div>
     ` : '';
 
