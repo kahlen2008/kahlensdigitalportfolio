@@ -30,7 +30,7 @@ const projectsData = [
         id: "factoriq",
         title: "FactorIQ",
         subtitle: "Facility Management System · June – August 2026",
-        category: "AI & Cloud Engineering",
+        category: "Full Stack Development",
         image: "images/factoriq.png",
         imageAlt: "FactorIQ Platform Screenshot",
         techStack: ["Next.js", "Firebase", "Firestore", "Scikit-Learn", "Vertex AI"],
@@ -92,7 +92,8 @@ const projectsData = [
         githubLink: null,
         demoLink: null,
         reportLink: "data%20wrangling%20report.pdf",
-        reportLabel: "View Report"
+        reportLabel: "View Report",
+        highlight: "Contributed to a Distinction for the module (top 5% of cohort)."
     }
 ];
 
@@ -118,6 +119,11 @@ function ProjectCard(project) {
         <span style="font-weight: 800; color: var(--accent); letter-spacing: 2px; text-transform: uppercase; font-size: 0.7rem; margin-bottom: 1rem; display: block;">
             ${project.category}
         </span>
+    ` : '';
+
+    // Optional highlight note (e.g. a grade this project contributed to)
+    const highlightHtml = project.highlight ? `
+        <p class="project-highlight"><i class="fas fa-star" aria-hidden="true"></i><span>${project.highlight}</span></p>
     ` : '';
 
     // Tech badges
@@ -191,6 +197,7 @@ function ProjectCard(project) {
         ${categoryHtml}
         <h3 style="font-size: 1.8rem; font-weight: 900; line-height: 1.15; margin-bottom: 0.5rem;">${project.title}</h3>
         <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1.5rem; font-weight: 600;">${project.subtitle}</p>
+        ${highlightHtml}
         <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem;">
             ${techStackHtml}
         </div>
