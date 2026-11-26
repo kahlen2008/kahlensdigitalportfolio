@@ -483,6 +483,44 @@ h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
 }
 
+/* React contact form (Week 13_1) */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.contact-btn {
+    width: 100%;
+    border-radius: 12px;
+    height: 60px;
+}
+
+.contact-form .contact-btn {
+    margin-top: 0.5rem;
+}
+
+.contact-btn:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.contact-send-error {
+    color: #ef4444;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.contact-thanks {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.contact-thanks .modal-title:focus {
+    outline: none;
+}
+
 /* Footer */
 footer {
     padding: 4rem 10%;

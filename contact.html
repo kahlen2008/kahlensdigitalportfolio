@@ -76,46 +76,37 @@
                 </div>
 
                 <div class="luxe-card" style="padding: 3rem;">
-                    <form id="contactForm" action="https://formspree.io/f/xvzbzegj" method="POST"
-                        style="display: flex; flex-direction: column; gap: 1.5rem;" novalidate>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" name="name" id="name" placeholder="Your Name" required>
-                            <div class="error-message">Please enter your full name.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" name="email" id="email" placeholder="example@domain.com" required>
-                            <div class="error-message">Please enter a valid email address.</div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea name="message" id="message" rows="4" placeholder="How can I help you?"
-                                required></textarea>
-                            <div class="error-message">Please share a few details about your enquiry.</div>
-                        </div>
-                        <button type="submit" class="btn btn-dark"
-                            style="width: 100%; border-radius: 12px; height: 60px; margin-top: 0.5rem;">
-                            SEND MESSAGE <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
-                        </button>
-                    </form>
+                    <!-- React contact form (WebPro Week 13_1: React Forms). The plain HTML form below
+                         is only a fallback: React replaces it as soon as the component mounts. -->
+                    <div id="contact-form-root">
+                        <form id="contactForm" action="https://formspree.io/f/xvzbzegj" method="POST"
+                            style="display: flex; flex-direction: column; gap: 1.5rem;">
+                            <div class="form-group">
+                                <label for="name">Full Name</label>
+                                <input type="text" name="name" id="name" placeholder="Your Name" required>
+                                <div class="error-message">Please enter your full name.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" name="email" id="email" placeholder="example@domain.com" required>
+                                <div class="error-message">Please enter a valid email address.</div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea name="message" id="message" rows="4" placeholder="How can I help you?"
+                                    required></textarea>
+                                <div class="error-message">Please share a few details about your enquiry.</div>
+                            </div>
+                            <button type="submit" class="btn btn-dark"
+                                style="width: 100%; border-radius: 12px; height: 60px; margin-top: 0.5rem;">
+                                SEND MESSAGE <i class="fas fa-paper-plane" style="margin-left: 10px;"></i>
+                            </button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
-
-    <div class="modal-overlay" id="successModal">
-        <div class="modal-content">
-            <div class="modal-icon">
-                <i class="fas fa-check"></i>
-            </div>
-            <h3 class="modal-title">Engineering Success</h3>
-            <p class="modal-text">Your message has been received. I will review your enquiry and respond with strategic
-                intent shortly.</p>
-            <button class="btn btn-dark" style="width: 100%; border-radius: 12px; height: 60px;"
-                onclick="closeModal()">CLOSE</button>
-        </div>
-    </div>
 
     <div class="modal-overlay" id="resumeModal" style="padding: 2rem;">
         <div class="modal-content" style="max-width: 1000px; width: 100%; height: 90vh; padding: 1rem; display: flex; flex-direction: column;">
@@ -141,6 +132,141 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="script.js"></script>
+
+    <!-- React 18 + Babel (pinned versions) for the contact form -->
+    <script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.26.4/babel.min.js"></script>
+    <script type="text/babel">
+        const { useState, useRef, useEffect } = React;
+
+        const FORMSPREE_URL = 'https://formspree.io/f/xvzbzegj';
+        const INITIAL = { name: '', email: '', message: '' };
+        const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+        const FIELDS = [
+            { name: 'name', label: 'Full Name', type: 'text', placeholder: 'Your Name', autoComplete: 'name' },
+            { name: 'email', label: 'Email Address', type: 'email', placeholder: 'example@domain.com', autoComplete: 'email' },
+            { name: 'message', label: 'Message', placeholder: 'How can I help you?' },
+        ];
+
+        // Validate all three fields; returns { field: message } for each problem
+        function validate(form) {
+            const errs = {};
+            if (!form.name.trim()) errs.name = 'Please enter your full name.';
+            if (!form.email.trim()) errs.email = 'Please enter your email address.';
+            else if (!EMAIL_PATTERN.test(form.email.trim())) errs.email = 'Please enter a valid email address.';
+            if (!form.message.trim()) errs.message = 'Please share a few details about your enquiry.';
+            return errs;
+        }
+
+        function ContactForm() {
+            const [form, setForm] = useState(INITIAL);
+            const [errors, setErrors] = useState({});
+            const [status, setStatus] = useState('idle'); // 'idle' | 'sending' | 'failed'
+            const [sentTo, setSentTo] = useState(null);   // sender's name once the message is sent
+            const thanksRef = useRef(null);
+
+            useEffect(() => {
+                if (sentTo && thanksRef.current) thanksRef.current.focus();
+            }, [sentTo]);
+
+            // One handler for every field: e.target.name picks the key to update
+            function handleChange(e) {
+                const { name, value } = e.target;
+                setForm((prev) => ({ ...prev, [name]: value }));
+                setErrors((prev) => ({ ...prev, [name]: '' })); // clear that field's error while typing
+            }
+
+            async function handleSubmit(e) {
+                e.preventDefault();
+                const errs = validate(form);
+                if (Object.keys(errs).length) {
+                    setErrors(errs);
+                    const first = FIELDS.find((f) => errs[f.name]);
+                    document.getElementById(first.name).focus();
+                    return;
+                }
+
+                const payload = { name: form.name.trim(), email: form.email.trim(), message: form.message.trim() };
+                setStatus('sending');
+                try {
+                    const res = await fetch(FORMSPREE_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    setSentTo(payload.name); // remember the name before resetting
+                    setForm(INITIAL);         // reset the form
+                    setErrors({});
+                    setStatus('idle');
+                } catch (err) {
+                    setStatus('failed');
+                }
+            }
+
+            function sendAnother() {
+                setSentTo(null);
+                requestAnimationFrame(() => document.getElementById('name').focus());
+            }
+
+            if (sentTo) {
+                return (
+                    <div className="contact-thanks" role="status">
+                        <div className="modal-icon"><i className="fas fa-check" aria-hidden="true"></i></div>
+                        <h3 className="modal-title" ref={thanksRef} tabIndex={-1}>Thank you, {sentTo}!</h3>
+                        <p className="modal-text">
+                            Your message has been received.
+                        </p>
+                        <button type="button" className="btn btn-dark contact-btn" onClick={sendAnother}>
+                            SEND ANOTHER MESSAGE
+                        </button>
+                    </div>
+                );
+            }
+
+            const sending = status === 'sending';
+
+            return (
+                <form id="contactForm" onSubmit={handleSubmit} noValidate className="contact-form">
+                    {FIELDS.map((f) => {
+                        const error = errors[f.name];
+                        const props = {
+                            id: f.name,
+                            name: f.name,
+                            value: form[f.name],
+                            onChange: handleChange,
+                            placeholder: f.placeholder,
+                            'aria-invalid': !!error,
+                            'aria-describedby': error ? `${f.name}-error` : undefined,
+                        };
+                        return (
+                            <div className={`form-group ${error ? 'error' : ''}`} key={f.name}>
+                                <label htmlFor={f.name}>{f.label}</label>
+                                {f.name === 'message'
+                                    ? <textarea rows={4} {...props} />
+                                    : <input type={f.type} autoComplete={f.autoComplete} {...props} />}
+                                <div className="error-message" id={`${f.name}-error`}>{error}</div>
+                            </div>
+                        );
+                    })}
+
+                    {status === 'failed' && (
+                        <p className="contact-send-error" role="alert">
+                            Something went wrong sending your message. Please try again or contact me directly via LinkedIn.
+                        </p>
+                    )}
+
+                    <button type="submit" className="btn btn-dark contact-btn" disabled={sending}>
+                        {sending ? 'SENDING…' : <>SEND MESSAGE <i className="fas fa-paper-plane" style={{ marginLeft: 10 }} aria-hidden="true"></i></>}
+                    </button>
+                </form>
+            );
+        }
+
+        ReactDOM.createRoot(document.getElementById('contact-form-root')).render(<ContactForm />);
+    </script>
 </body>
 
 </html>
